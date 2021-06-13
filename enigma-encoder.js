@@ -1,3 +1,7 @@
+function clearBox() {
+    document.getElementById('encoded').innerHTML = "[Numeric solution will come out here!]";
+  };
+
 function getInputValue(){
     // Selecting the input element and get its value 
     let inputVal = document.getElementById("myInput").value;
