@@ -18,15 +18,17 @@ function clearBox() {
     // +- -> \pm
     // * -> \times
     // Ignore division for now
-    // Ignore powers for now (should be ^ already at end, but no {})
+    // Ignore powers for now ({} part won't be implemented currently)
 
     addition = ''
 
     for (let i = 0 ; i < newString.length ; i++) {
       if (newString[i] === '+' && newString[i+1] === '-') {addition += '\\pm'; i += 1}
+      else if (newString[i] === '*' && newString[i+1] === '*') {addition += '**'; i += 1}
       else if (newString[i] === '*' && newString[i+1] !== '*' && newString[i-1] !== '*') {addition += '\\times'}
       else {addition += newString[i]};
     }
+    console.log(addition);
 
     codeOut += (addition + '<br>\n');
   }
