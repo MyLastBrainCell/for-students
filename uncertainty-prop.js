@@ -688,7 +688,7 @@ function clearBox() {
       return [func, 0];
     } else if (operations.length === 1) {
       console.log('Operation registered to be ' + operations[0]);
-      UpdateOut('Operation registered to be //(' + operations[0] + '//)');
+      UpdateOut('Operation registered to be \\(' + operations[0] + '\\)');
       return [operations[0], operationsInd];
     } else {
       console.log('No operators found');
