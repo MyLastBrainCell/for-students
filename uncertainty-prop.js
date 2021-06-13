@@ -1,13 +1,18 @@
+function clearBox() {
+    document.getElementById('MathOutput').innerHTML = "[Numeric solution will come out here!]";
+  };
+
   function getInputValue() {
     // Selecting the input element and get its value
     let inputVal = document.getElementById('myInput').value;
     codeOut = '';
-    document.getElementById('encoded').innerHTML = codeOut;
+    UncPropSteps(inputVal);
+    document.getElementById('MathOutput').innerHTML = codeOut;
+    MathJax.typeset()
   }
 
   let codeOut = '';
   let addition = '';
-
 
   function UpdateOut(newString) {
     // +- -> \pm
@@ -683,7 +688,7 @@
       return [func, 0];
     } else if (operations.length === 1) {
       console.log('Operation registered to be ' + operations[0]);
-      UpdateOut('Operation registered to be ' + operations[0]);
+      UpdateOut('Operation registered to be ' + operations[0] + ' ');
       return [operations[0], operationsInd];
     } else {
       console.log('No operators found');
