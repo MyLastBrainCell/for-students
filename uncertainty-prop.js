@@ -30,8 +30,8 @@ function clearBox() {
     for (let i = 0 ; i < newString.length ; i++) {
 
       if (newString[i] === "\\") {
-        if (newString[i+1] === "(" || newString[i+1] === "[") {TeXFlag = true; i += 2}
-        else if (newString[i+1] === ")" || newString[i+1] === "]") {TeXFlag = false; i += 2};
+        if (newString[i+1] === "(" || newString[i+1] === "[") {TeXFlag = true; addition += newString[i] + newString[i+1]; i += 2}
+        else if (newString[i+1] === ")" || newString[i+1] === "]") {TeXFlag = false; addition += newString[i] + newString[i+1]; i += 2}
       };
 
       // Just pasting this again below, seems the easiest way to handle \(\)
