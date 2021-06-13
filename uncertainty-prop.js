@@ -545,7 +545,7 @@
           tempVar +
           funcNew.split(finalBracket)[1];
       } else if (finalBracketSplit[0].length === 1 && finalBracketSplit[1].length === 0) {
-        UpdateOut("we have a single variable enclosed in brackets. Let's take a look...");
+        UpdateOut("We have a single variable enclosed in brackets. Let's take a look...");
 
         let openingIndex = bracketLocation[2][0];
         let bracketOp = '';
