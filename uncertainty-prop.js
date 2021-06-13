@@ -367,9 +367,7 @@ function clearBox() {
           operators.push(strippedFunc.slice(i, j));
 
           strippedFunc =
-            strippedFunc.slice(0, i) +
-            ';'.repeat(allOperators[k].length) +
-            strippedFunc.slice(j + 1);
+            strippedFunc.slice(0, i) + ';'.repeat(strippedFunc.length - i - strippedFunc.slice(j + 1).length) + strippedFunc.slice(j + 1);
 
           if ((strippedFunc.match(/;/g) || []).length === strippedFunc.length) {
             break;
