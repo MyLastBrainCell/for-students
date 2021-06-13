@@ -1,6 +1,6 @@
-function clearBox() {
+  function clearBox() {
     document.getElementById('MathOutput').innerHTML = "[Numeric solution will come out here!]";
-  };
+    };
 
   function getInputValue() {
     // Selecting the input element and get its value
@@ -13,6 +13,7 @@ function clearBox() {
 
   let codeOut = '';
   let addition = '';
+
 
   function UpdateOut(newString) {
     // +- -> \pm
@@ -340,9 +341,6 @@ function clearBox() {
       iterProtect += 1;
     }
     if (iterProtect >= 50) {
-      console.log(
-        'Error in variable identifying loop, proceeding but please check over input in case of mistake.'
-      );
       UpdateOut('Error in variable identifying loop, proceeding but please check over input in case of mistake.');
     }
 
@@ -386,9 +384,6 @@ function clearBox() {
       }
     }
     if (iterProtect >= 50) {
-      console.log(
-        'Error in operator identifying loop, proceeding but please check over input in case of mistake.'
-      );
       UpdateOut('Error in operator identifying loop, proceeding but please check over input in case of mistake.');
     }
 
@@ -431,7 +426,7 @@ function clearBox() {
   }
 
 
-  
+
 
   function Reformat(func) {
 
@@ -475,7 +470,7 @@ function clearBox() {
     }
 
     func = Reformat(func);
-      
+
     const singleElementOps = [
       'log10',
       'atan',
@@ -534,28 +529,22 @@ function clearBox() {
       finalBracketSplit = FuncSplitter(finalBracket);
 
       if (funcSplit[1].length === 1) {
-        console.log('We have only one operator in ' + func);
         UpdateOut('We have only one operator in \\(' + func + '\\)');
         tempVar = '[' + FindUncRule(funcNew).join('+-') + ']';
         func = tempVar;
       } else if (bracketLocation[0].length === 0 && funcSplit[1].length > 0) {
-        console.log('No brackets, try working left-to-right');
         UpdateOut('No brackets, try working left-to-right');
         tempFunc = funcNew.slice(0, funcSplit[2][1] + 1);
         tempVar = '[' + FindUncRule(tempFunc).join('+-') + ']';
         func = funcNew.split(tempFunc)[0] + tempVar + funcNew.split(tempFunc)[1];
       } else if (finalBracketSplit[1].length === 1) {
-        console.log('We have a single operator within the last set of brackets.');
         UpdateOut('We have a single operator within the last set of brackets.');
         tempVar = '[' + FindUncRule(finalBracket).join('+-') + ']';
         func =
           funcNew.split(finalBracket)[0] +
           tempVar +
           funcNew.split(finalBracket)[1];
-      } else if (finalBracketSplit[0] === 1 && finalBracketSplit[1] === 0) {
-        console.log(
-          "We have a single variable enclosed in brackets. Let's take a look..."
-        );
+      } else if (finalBracketSplit[0].length === 1 && finalBracketSplit[1].length === 0) {
         UpdateOut("we have a single variable enclosed in brackets. Let's take a look...");
 
         let openingIndex = bracketLocation[2][0];
@@ -564,12 +553,19 @@ function clearBox() {
         let lefthandVariable = '';
 
         for (let i = 0; i < funcSplit[1].length; i++) {
+          /*
+          console.log("swish 1");
+          console.log(funcSplit);
+          console.log(i);
+          console.log("swish 2");
+          */
           if (funcSplit[2][i] + funcSplit[1][i].length == openingIndex) {
             bracketOp = funcSplit[1][i];
             bracketOpIndex = funcSplit[2][i];
             break;
           }
         }
+
         if (bracketOp) {
           for (let i = 0; i < funcSplit[0].length; i++) {
             if (
@@ -587,8 +583,9 @@ function clearBox() {
             .split(isolatedRule)
             .join('[' + propagation.join('+-') + ']');
         }
+
+
       } else if (func.indexOf(']**') > -1) {
-        console.log('We have a power applied directly to a variable');
         UpdateOut('We have a power applied directly to a variable.');
         let lefthandSide = func.split('**')[0];
         tempVar = lefthandSide.split('**')[0].split('[');
@@ -610,9 +607,6 @@ function clearBox() {
             isolatedRule = baseOperator + miniFunc;
             propagation = FindUncRule(isolatedRule);
           } else {
-            console.log(
-              'Cannot propagate the form of a variable to the power of a variable.'
-            );
             UpdateOut('Cannot propagate the form of a variable to the power of a variable.');
           }
 
@@ -624,7 +618,6 @@ function clearBox() {
             powerSide.split(')')[1];
         }
       } else if (SumArray(singleOps) === 1) {
-        console.log('We have a single element operation.');
         UpdateOut('We have a single element operation.');
 
         let rule = funcSplit[1][singleOps.indexOf(1)];
@@ -641,7 +634,6 @@ function clearBox() {
       funcNew = func;
       funcSplit = FuncSplitter(funcNew);
 
-      console.log('New function after iteration: ' + funcNew);
       UpdateOut('New function after iteration: \\[' + funcNew + '\\]<br>');
       console.log('Num operators remaining: ' + String(funcSplit[1].length));
       console.log('Iterations: ' + String(iterations) + '\n');
@@ -729,19 +721,18 @@ function clearBox() {
 
     if (operations.length > 1) {
       console.log(operations);
-      console.log('Too many operations!');
       UpdateOut('Too many operations!');
       return [func, 0];
     } else if (operations.length === 1) {
-      console.log('Operation registered to be ' + operations[0]);
       UpdateOut('Operation registered to be \\(' + operations[0] + '\\)');
       return [operations[0], operationsInd];
     } else {
-      console.log('No operators found');
       UpdateOut('No operators found.');
       return [func, 0];
     }
   }
+
+
 
   function FindUncRule(func) {
     console.log('FindUncRule called for ' + func);
@@ -752,7 +743,6 @@ function clearBox() {
         strippedFunc += func[i];
       }
     }
-    func = strippedFunc;
 
     const singleElementOps = [
       'log10',
@@ -886,9 +876,6 @@ function clearBox() {
         tempUnc = unc_atan(y, dy);
         return [RoundSig(tempVar, 4), RoundSig(Math.abs(tempUnc), 4)];
       } else {
-        console.log(
-          'An unexpected error has occurred - function was logged as known and then not found in the next section of code.'
-        );
         UpdateOut('An unexpected error has occurred - function was logged as known and then not found in the next section of code.');
         return [undefined, undefined];
       }
