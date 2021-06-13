@@ -407,8 +407,30 @@ function clearBox() {
     return bracketLocation;
   }
 
+
+  
+
+  function Reformat(func) {
+
+    i = func.indexOf("]**")
+    
+    if (i > -1 && func[i+3] !== "(") {
+
+      powerSide = func.slice(i+3);
+   
+      if (+powerSide === +powerSide) {
+          /* check if it's a number */
+          newFunc = func.slice(0,i+3) + "(" + func.slice(i+3) + ")";
+          return newFunc;
+        }
+    }
+    return func;
+  }
+
+
+
+
   function UncPropSteps(func) {
-    console.log('Confirming an uncertainty propagation of ' + func);
     UpdateOut('Confirming an uncertainty propagation of \\(' + func + '\\)');
 
     let strippedFunc = '';
@@ -429,6 +451,8 @@ function clearBox() {
       }
     }
 
+    func = Reformat(func);
+      
     const singleElementOps = [
       'log10',
       'atan',
