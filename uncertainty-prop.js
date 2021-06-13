@@ -24,7 +24,7 @@ function clearBox() {
 
     for (let i = 0 ; i < newString.length ; i++) {
       if (newString[i] === '+' && newString[i+1] === '-') {addition += '\\pm'; i += 1}
-      else if (newString[i] === '*' && newString[i+1] !== '*') {addition += '\\times'}
+      else if (newString[i] === '*' && newString[i+1] !== '*' && newString[i-1] !== '*') {addition += '\\times'}
       else {addition += newString[i]};
     }
 
