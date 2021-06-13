@@ -19,14 +19,39 @@ function clearBox() {
     // * -> \times
     // Ignore division for now
     // Ignore powers for now ({} part won't be implemented currently)
+    // Assumes all text in TeX brackets are TeX functions
 
-    addition = ''
+    const alph = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+    addition = '';
+    let wordOpFlag = false;
+    let TeXFlag = false;
 
     for (let i = 0 ; i < newString.length ; i++) {
-      if (newString[i] === '+' && newString[i+1] === '-') {addition += '\\pm'; i += 1}
-      else if (newString[i] === '*' && newString[i+1] === '*') {addition += '**'; i += 1}
-      else if (newString[i] === '*' && newString[i+1] !== '*' && newString[i-1] !== '*') {addition += '\\times'}
-      else {addition += newString[i]};
+
+      if (newString[i] === "\\") {
+        if (newString[i+1] === "(" || newString[i+1] === "[") {TeXFlag = true; i += 2}
+        else if (newString[i+1] === ")" || newString[i+1] === "]") {TeXFlag = false; i += 2};
+      };
+
+      // Just pasting this again below, seems the easiest way to handle \(\)
+
+      if (newString[i] === "\\") {
+        if (newString[i+1] === "(" || newString[i+1] === "[") {TeXFlag = true; i += 2}
+        else if (newString[i+1] === ")" || newString[i+1] === "]") {TeXFlag = false; i += 2};
+      };
+
+      if (!TeXFlag && i < newString.length) {addition += newString[i]}
+      else if (TeXFlag && i < newString.length) {
+        if (alph.indexOf(newString[i]) > -1) {
+          if (!wordOpFlag) {wordOpFlag = true; addition += '\\' + newString[i]}
+          else {addition += newString[i]};
+        }
+        else if (newString[i] === '+' && newString[i+1] === '-') {addition += '\\pm'; i += 1; wordOpFlag = false}
+        else if (newString[i] === '*' && newString[i+1] === '*') {addition += '**'; i += 1; wordOpFlag = false}
+        else if (newString[i] === '*' && newString[i+1] !== '*' && newString[i-1] !== '*') {addition += '\\times'; wordOpFlag = false}
+        else {addition += newString[i] ; wordOpFlag = false};
+    }
     }
     console.log(addition);
 
