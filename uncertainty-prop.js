@@ -656,12 +656,9 @@ function clearBox() {
     }
 
     if (funcNew.indexOf(undefined) > -1) {
-      console.log(
-        'Exited due to an undefined value, please check your math domain.'
-      );
       UpdateOut('Exited due to an undefined value, please check your math domain.');
-    } else {
-      console.log('Finished!');
+    } else if (iterations === 5) {UpdateOut('The program exited after 5 iterations without an answer.'); return('[NA+-NA]')}
+    else {
       UpdateOut('Finished!');
       let finalVal = funcNew.split('+-')[0].split('[')[1];
       let finalUnc = funcNew.split('+-')[1].split(']')[0];
@@ -670,7 +667,7 @@ function clearBox() {
       funcNew = '[' + finalQuote.join('+-') + ']';
     }
 
-    UpdateOut('<br>\\[' + funcNew + '\\]');
+    UpdateOut('\\[' + funcNew + '\\]');
 
     return funcNew;
   }
