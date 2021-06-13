@@ -1,5 +1,5 @@
 function clearBox() {
-    document.getElementById('encoded').innerHTML = "[Numeric solution will come out here!]";
+    document.getElementById('encoded').innerHTML = "[Secret messages will come out here!]";
   };
 
 function getInputValue(){
