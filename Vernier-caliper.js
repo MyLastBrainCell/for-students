@@ -1,13 +1,10 @@
-function resetCaliper() {
-    document.getElementById("top-img").style.left = "0px";
-  };
-
 function getInputValue() {
   let inputVal = document.getElementById("myInput").value;
-  document.getElementById("top-img").style.left=cmToPixels(inputVal)+"px";
+  document.getElementById("top-img").style.left=inputVal+"px";
+  document.getElementByID("measureReadout").innerHTML = pixToDist(inputVal) + "mm";
 };
 
-function cmToPixels(cm) {
-  //return Math.round(Number(cm) * (899/15));
-  return cm;
+function pixToDist(px) {
+  // returns mm
+  return Math.round(Number(px) * (150/899));
 }
