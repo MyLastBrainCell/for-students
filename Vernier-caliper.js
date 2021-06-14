@@ -6,5 +6,5 @@ function getInputValue() {
 
 function pixToDist(px) {
   // returns mm
-  return Math.round(Number(px) * (150/899));
+  return Math.round(Number(px) * (1500/899))/10;
 }
