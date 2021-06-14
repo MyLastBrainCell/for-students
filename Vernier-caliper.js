@@ -8,5 +8,6 @@ function getInputValue() {
 };
 
 function cmToPixels(cm) {
-  return Math.round(Number(cm) * (899/15));
+  //return Math.round(Number(cm) * (899/15));
+  return cm;
 }
