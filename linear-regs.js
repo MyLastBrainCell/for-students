@@ -31,7 +31,8 @@ function ExampleLinear() {
     let xUnitInput = 'm';
     let yUnitInput = 'm';
 
-    let eq = LinearRegs(xInput,yInput,yUncInput);
+    //let eq = LinearRegs(xInput,yInput,yUncInput);
+    document.getElementById('myDiv') = "boom";
 }
 
 
