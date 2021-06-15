@@ -10,13 +10,14 @@ function getInputValue(){
     let xUnitInput = document.getElementById("horizontalUnit").value;
     let yUnitInput = document.getElementById("verticalUnit").value;
 
-    xInput = [1,2,3];
-    yInput = [3,4.9,7];
-    yUncInput = [1,1,1];
-    xNameInput = 'r';
-    yNameInput = 'd';
-    xUnitInput = 'm';
-    yUnitInput = 'm';
+    if (xInput.length === 0) {xInput = [0,0,0]};
+    if (yInput.length === 0) {yInput = [0,0,0]};
+    if (xUncInput.length === 0) {xUncInput = []; for (let i = 0; i < xInput.length ; i++) {xUncInput.push(1)}};
+    if (yUncInput.length === 0) {yUncInput = []; for (let i = 0; i < yInput.length ; i++) {yUncInput.push(1)}};
+    if (xNameInput.length === 0) {xNameInput = 'x'};
+    if (yNameInput.length === 0) {yNameInput = 'y'};
+    if (xUnitInput.length === 0) {xUnitInput = ''};
+    if (yUnitInput.length === 0) {yUnitInput = ''};
 
     let eq = LinearRegs(xInput,yInput,yUncInput);
 }
