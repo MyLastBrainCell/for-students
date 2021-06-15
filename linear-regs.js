@@ -31,8 +31,7 @@ function ExampleLinear() {
     let xUnitInput = 'm';
     let yUnitInput = 'm';
 
-    //let eq = LinearRegs(xInput,yInput,yUncInput);
-    document.getElementById('myDiv') = "boom";
+    let eq = LinearRegs(xInput,yInput,yUncInput);
 }
 
 
@@ -294,35 +293,31 @@ function ExampleLinear() {
     }
   };
 
-  //var data = [traceData,traceFit];
-  //var data = traceData;
-  //var data = traceFit;
 
-  //Plotly.newPlot('myDiv', data, layout);
-function plot() {
-  var trace1 = {
-      x: xInput,
-      y: yInput,
-      error_y: {
-        type: 'data',
-        array: yUncInput,
-        visible: true
-      },
-      mode: 'markers',
-      name: "Data",
-      type: 'scatter'
-    };
 
-  var trace2 = {
-      x: [ xInput[0] , xInput[xInput.length-1]],
-      y: [ fitParam[0] * xInput[0] + fitParam[2] , fitParam[0] * xInput[xInput.length-1] + fitParam[2] ],
-      linecolor: 'red',
-      name: "Fit",
-      type: 'lines'
-  };
+var trace1 = {
+  x: xInput,
+  y: yInput,
+  error_y: {
+    type: 'data',
+    array: yUncInput,
+    visible: true
+  },
+  mode: 'markers',
+  name: "Data",
+  type: 'scatter'
+};
 
-  var data = [trace1, trace2];
+var trace2 = {
+  x: [ xInput[0] , xInput[xInput.length-1]],
+  y: [ fitParam[0] * xInput[0] + fitParam[2] , fitParam[0] * xInput[xInput.length-1] + fitParam[2] ],
+  linecolor: 'red',
+  name: "Fit",
+  type: 'lines'
+};
 
-  Plotly.newPlot('myDiv', data,layout);
+var data = [trace1, trace2];
+
+Plotly.newPlot('myDiv', data,layout);
     
-}
+
