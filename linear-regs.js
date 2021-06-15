@@ -1,3 +1,20 @@
+function getInputValue(){
+    // Selecting the input element and get its value 
+
+    let xInput = document.getElementById("horizontalData").value;
+    let yInput = document.getElementById("verticalData").value;
+    let xUncInput = document.getElementById("horizontalUnc").value;
+    let yUncInput = document.getElementById("verticalUnc").value;
+    let xNameInput = document.getElementById("horizontalLabel").value;
+    let yNameInput = document.getElementById("verticalLabel").value;
+    let xUnitInput = document.getElementById("horizontalUnit").value;
+    let yUnitInput = document.getElementById("verticalUnit").value;
+
+    let eq = LinearRegs(xInput,yInput,yUncInput);
+}
+
+
+
   function SumArray(arr) {
     let total = 0;
     for (let i = 0; i < arr.length ; i++) {
