@@ -10,6 +10,26 @@ function getInputValue(){
     let xUnitInput = document.getElementById("horizontalUnit").value;
     let yUnitInput = document.getElementById("verticalUnit").value;
 
+    xInput = [1,2,3];
+    yInput = [3,4.9,7];
+    yUncInput = [1,1,1];
+    xNameInput = 'r';
+    yNameInput = 'd';
+    xUnitInput = 'm';
+    yUnitInput = 'm';
+
+    let eq = LinearRegs(xInput,yInput,yUncInput);
+}
+
+function ExampleLinear() {
+    let xInput = [1,2,3];
+    let yInput = [3,4.9,7];
+    let yUncInput = [1,1,1];
+    let xNameInput = 'r';
+    let yNameInput = 'd';
+    let xUnitInput = 'm';
+    let yUnitInput = 'm';
+
     let eq = LinearRegs(xInput,yInput,yUncInput);
 }
 
