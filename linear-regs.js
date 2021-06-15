@@ -299,7 +299,7 @@ function ExampleLinear() {
   //var data = traceFit;
 
   //Plotly.newPlot('myDiv', data, layout);
-
+function plot() {
   var trace1 = {
       x: xInput,
       y: yInput,
@@ -324,3 +324,5 @@ function ExampleLinear() {
   var data = [trace1, trace2];
 
   Plotly.newPlot('myDiv', data,layout);
+    
+}
