@@ -14,8 +14,6 @@ function getInputValue(){
     if (RC.length === 0) {RC = 1};
     if (circuitSwitch !== 'open' && circuitSwitch !== 'closed') {xNameInput = 'open'};
     if (lampMinCurrent.length === 0) {yNameInput = 0.05};
-    
-    document.getElementById("batteryVoltage").placeholder = String(V);
 
     let lampStates = GetLampState(V,RA,RB,circuitSwitch,LampMinCurrent);
     let filePath = 's/' + imgMatcher(lampStates,circuitSwitch);
