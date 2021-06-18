@@ -38,6 +38,7 @@ function getInputValue(){
 
 function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-left.png"}
 
+/*
 function GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent) {
 
   if (circuitSwitch === 'open') {
@@ -65,3 +66,4 @@ function imgMatcher(lampStates,circuitSwitch) {
   else if (lampStates === "[0,1,0]" && circuitSwitch === 'closed') {return "circuit-closed-middle.png"}
   else if (lampStates === "[1,1,0]" && circuitSwitch === 'closed') {return "circuit-closed-2.png"}
 }
+*/
