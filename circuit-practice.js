@@ -27,13 +27,13 @@ function getInputValue(){
     */
 
     //let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
-    let lampStates = "[1,1,0]";
-    document.getElementById("lampState").innerHTML = lampStates;
+    //let lampStates = "[1,1,0]";
+    document.getElementById("lampState").innerHTML = "[1,1,0]";
     //let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
-    let filePath = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
+    //let filePath = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
     
-    document.getElementById("filePath").innerHTML = filePath;
-    document.getElementById("circuitImg").src = filePath;
+    document.getElementById("filePath").innerHTML = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
+    document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
 }
 
 function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-left.png"}
