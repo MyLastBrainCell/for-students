@@ -28,7 +28,7 @@ function getInputValue(){
     let lampStates = [1,1,0];
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
     document.getElementById("test").innerHTML = filePath;
-    document.getElementById("circuitImg").src = filePath;
+    //document.getElementById("circuitImg").src = filePath;
 }
 
 function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-left.png"}
