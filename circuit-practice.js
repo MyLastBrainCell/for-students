@@ -7,6 +7,8 @@ function getInputValue(){
     let RC = document.getElementById("resC").value;
     let circuitSwitch = document.getElementById("circuitSwitch").value;
     let lampMinCurrent = document.getElementById("lampMinCurrent").value;
+    
+    document.getElementById("test") = String(V);
 
     if (V.length === 0) {V = 12};
     if (RA.length === 0) {RA = 5};
