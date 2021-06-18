@@ -14,6 +14,13 @@ function getInputValue(){
     if (RC.length === 0) {RC = 1};
     if (circuitSwitch !== 'open' && circuitSwitch !== 'closed') {xNameInput = 'open'};
     if (lampMinCurrent.length === 0) {yNameInput = 0.05};
+    
+    console.log(V);
+    console.log(RA);
+    console.log(RB);
+    console.log(RC);
+    console.log(circuitSwitch);
+    console.log(lampMinCurrent);
 
     let lampStates = GetLampState(V,RA,RB,circuitSwitch,LampMinCurrent);
     let filePath = 's/' + imgMatcher(lampStates,circuitSwitch);
