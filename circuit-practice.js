@@ -20,7 +20,7 @@ function getInputValue(){
     document.getElementById("circuitImg").src = filePath;
 }
 
-function resetBox() {document.getElementById("circuitImg").src = "s/circuit-open-none.png"}
+function resetBox() {document.getElementById("circuitImg").src = "s/circuit-closed-left.png"}
 
 function GetLampState(V,RA,RB,circuitSwitch,lampMinCurrent) {
 
