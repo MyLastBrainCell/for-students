@@ -1,10 +1,11 @@
 function getInputValue(){
     // Selecting the input element and get its value 
 
-    let Voltage = document.getElementById("batteryVoltage").value;
+
     let RA = document.getElementById("resA").value;
     let RB = document.getElementById("resB").value;
     let RC = document.getElementById("resC").value;
+    let Voltage = document.getElementById("batteryVoltage").value;
     let circuitSwitch = document.getElementById("circuitSwitch").value;
     let lampMinCurrent = document.getElementById("lampMinCurrent").value;
     
