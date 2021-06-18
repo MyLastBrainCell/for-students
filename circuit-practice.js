@@ -24,7 +24,8 @@ function getInputValue(){
     let circuitSwitch = "open";
     let lampMinCurrent = 0.05;
 
-    let lampStates = GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent);
+    //let lampStates = GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent);
+    let lampStates = [1,1,0];
     let filePath = 's/' + imgMatcher(lampStates,circuitSwitch);
     document.getElementById("circuitImg").src = filePath;
 }
