@@ -33,7 +33,7 @@ function getInputValue(){
     let filePath = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
     
     document.getElementById("filePath").innerHTML = filePath;
-    //document.getElementById("circuitImg").src = filePath;
+    document.getElementById("circuitImg").src = filePath;
 }
 
 function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-left.png"}
