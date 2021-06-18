@@ -1,21 +1,28 @@
 function getInputValue(){
     // Selecting the input element and get its value 
 
-    let Voltage = document.getElementById("batteryVoltage").value;
+    /*
+    let V = document.getElementById("batteryVoltage").value;
     let RA = document.getElementById("resA").value;
     let RB = document.getElementById("resB").value;
     let RC = document.getElementById("resC").value;
     let circuitSwitch = document.getElementById("circuitSwitch").value;
     let lampMinCurrent = document.getElementById("lampMinCurrent").value;
-    
-    document.getElementById("test") = String(Voltage);
 
-    if (Voltage.length === 0) {Voltage = 12};
+    if (V.length === 0) {V = 12};
     if (RA.length === 0) {RA = 5};
     if (RB.length === 0) {RB = 8};
     if (RC.length === 0) {RC = 1};
     if (circuitSwitch !== 'open' && circuitSwitch !== 'closed') {xNameInput = 'open'};
     if (lampMinCurrent.length === 0) {yNameInput = 0.05};
+    */
+
+    let V = 12;
+    let RA = 5;
+    let RB = 8;
+    let RC = 1;
+    let circuitSwitch = "open";
+    let lampMinCurrent = 0.05;
 
     let lampStates = GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent);
     let filePath = 's/' + imgMatcher(lampStates,circuitSwitch);
