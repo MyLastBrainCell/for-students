@@ -24,8 +24,7 @@ function getInputValue(){
     let circuitSwitch = "open";
     let lampMinCurrent = 0.05;
 
-    //let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
-    let lampStates = [1,1,0];
+    let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
     document.getElementById("lampState").innerHTML = String(lampStates);
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
     document.getElementById("test").innerHTML = String(filePath);
@@ -54,10 +53,10 @@ function GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent) {
 
 function imgMatcher(lampStates,circuitSwitch) {
 
-  if (lampStates === [0,0,0] && circuitSwitch === 'open') {return "circuit-open-none.png"}
-  else if (lampStates === [0,0,0] && circuitSwitch === 'closed') {return "circuit-closed-0.png"}
-  else if (lampStates === [1,0,0] && circuitSwitch === 'closed') {return "circuit-closed-left.png"}
-  else if (lampStates === [1,0,0] && circuitSwitch === 'open') {return "circuit-open-left.png"}
-  else if (lampStates === [0,1,0] && circuitSwitch === 'closed') {return "circuit-closed-middle.png"}
-  else if (lampStates === [1,1,0] && circuitSwitch === 'closed') {return "circuit-closed-2.png"}
+  if (lampStates === "[0,0,0]" && circuitSwitch === 'open') {return "circuit-open-none.png"}
+  else if (lampStates === "[0,0,0]" && circuitSwitch === 'closed') {return "circuit-closed-0.png"}
+  else if (lampStates === "[1,0,0]" && circuitSwitch === 'closed') {return "circuit-closed-left.png"}
+  else if (lampStates === "[1,0,0]" && circuitSwitch === 'open') {return "circuit-open-left.png"}
+  else if (lampStates === "[0,1,0]" && circuitSwitch === 'closed') {return "circuit-closed-middle.png"}
+  else if (lampStates === "[1,1,0]" && circuitSwitch === 'closed') {return "circuit-closed-2.png"}
 }
