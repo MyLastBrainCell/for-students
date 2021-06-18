@@ -26,9 +26,11 @@ function getInputValue(){
 
     //let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
     let lampStates = "[1,1,0]";
-    document.getElementById("lampState").innerHTML = String(lampStates);
-    let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
-    document.getElementById("test").innerHTML = String(filePath);
+    document.getElementById("lampState").innerHTML = lampStates;
+    //let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
+    let filePath = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
+    
+    document.getElementById("filePath").innerHTML = filePath;
     //document.getElementById("circuitImg").src = filePath;
 }
 
@@ -45,9 +47,9 @@ function GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent) {
     let currentA = Voltage / RA;
     let currentB = Voltage / RB;
 
-    if (currentA >= lampMinCurrent && currentB >= lampMinCurrent) {return [1,1,0]}
-    else if (currentA >= lampMinCurrent && currentB < lampMinCurrent) {return [1,0,0]}
-    else if (currentA < lampMinCurrent && currentB >= lampMinCurrent) {return [0,1,0]}
+    if (currentA >= lampMinCurrent && currentB >= lampMinCurrent) {return "[1,1,0]"}
+    else if (currentA >= lampMinCurrent && currentB < lampMinCurrent) {return "[1,0,0]"}
+    else if (currentA < lampMinCurrent && currentB >= lampMinCurrent) {return "[0,1,0]"}
     else {return [0,0,0]};
   }
 }
