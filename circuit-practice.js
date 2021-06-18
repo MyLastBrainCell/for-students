@@ -32,8 +32,8 @@ function getInputValue(){
     //let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
     //let filePath = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
     
-    //document.getElementById("filePath").innerHTML = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
-    //document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
+    body.getElementById("filePath").innerHTML = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
+    body.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-2.png";
     console.log("wtf");
 }
 
