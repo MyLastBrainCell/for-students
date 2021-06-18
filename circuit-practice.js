@@ -27,6 +27,7 @@ function getInputValue(){
     //let lampStates = GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent);
     let lampStates = [1,1,0];
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
+    document.getElementById("test").innerHTML = filePath;
     document.getElementById("circuitImg").src = filePath;
 }
 
