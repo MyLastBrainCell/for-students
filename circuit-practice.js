@@ -24,7 +24,8 @@ function getInputValue(){
     let circuitSwitch = "open";
     let lampMinCurrent = 0.05;
 
-    let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
+    //let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
+    let lampStates = [1,1,0];
     document.getElementById("lampState").innerHTML = String(lampStates);
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
     document.getElementById("test").innerHTML = String(filePath);
