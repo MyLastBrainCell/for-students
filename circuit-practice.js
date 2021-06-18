@@ -24,10 +24,10 @@ function getInputValue(){
     let circuitSwitch = "open";
     let lampMinCurrent = 0.05;
 
-    //let lampStates = GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent);
-    let lampStates = [1,1,0];
+    let lampStates = GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent);
+    document.getElementById("lampState").innerHTML = String(lampStates);
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
-    document.getElementById("test").innerHTML = filePath;
+    document.getElementById("test").innerHTML = String(filePath);
     //document.getElementById("circuitImg").src = filePath;
 }
 
