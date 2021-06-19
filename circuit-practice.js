@@ -5,8 +5,10 @@ function getInputValue(){
     let RA = body.getElementById("resA").value;
     let RB = body.getElementById("resB").value;
     let RC = body.getElementById("resC").value;
-    let circuitSwitch = body.getElementById("circuitSwitch").value;
-    let lampMinCurrent = body.getElementById("lampMinCurrent").value;
+    //let circuitSwitch = body.getElementById("circuitSwitch").value;
+    //let lampMinCurrent = body.getElementById("lampMinCurrent").value;
+    let circuitSwitch = "closed";
+    let lampMinCurrent = 0.01;
 
     //if (V.length === 0) {V = 12};
     //if (RA.length === 0) {RA = 5};
@@ -21,7 +23,7 @@ function getInputValue(){
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
 }
 
-function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-closed-left.png"}
+function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-open-none.png"}
 
 
 function GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent) {
