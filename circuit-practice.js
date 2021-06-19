@@ -1,10 +1,10 @@
   function getInputValue(){
       // Selecting the input element and get its value 
 
-      const Voltage = document.getElementById("batteryVoltage").value;
-      const RA = document.getElementById("resA").value;
-      const RB = document.getElementById("resB").value;
-      const RC = document.getElementById("resC").value;
+      let Voltage = document.getElementById("batteryVoltage").value;
+      let RA = document.getElementById("resA").value;
+      let RB = document.getElementById("resB").value;
+      let RC = document.getElementById("resC").value;
 
       let circuitSwitch = document.getElementById("circuitSwitch").value;
       let lampMinCurrent = document.getElementById("lampMinCurrent").value;
@@ -18,6 +18,8 @@
 
       let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent));
       let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
+
+      document.getElementById("circuitImg").src = filePath;
   }
 
   function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-open-none.png"}
@@ -50,4 +52,3 @@
     else if (lampStates === "[0,1,0]" && circuitSwitch === 'closed') {return "circuit-closed-middle(1).png"}
     else if (lampStates === "[1,1,0]" && circuitSwitch === 'closed') {return "circuit-closed-2(1).png"}
   }
-
