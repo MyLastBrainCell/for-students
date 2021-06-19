@@ -1,7 +1,9 @@
 function getInputValue() {
+  document.getElementById("measureReadout").innerHTML = "Measurements = ugh mm";
+  
   let inputVal = document.getElementById("myInput").value;
   body.getElementById("top-img").style.left=inputVal+"px";
-  document.getElementById("measureReadout").innerHTML = "Measurement = " + pixToDist(inputVal) + "mm";
+  //document.getElementById("measureReadout").innerHTML = "Measurement = " + pixToDist(inputVal) + "mm";
 };
 
 function pixToDist(px) {
