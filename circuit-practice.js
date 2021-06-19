@@ -17,9 +17,7 @@
       if (lampMinCurrent.length === 0) {yNameInput = 0.05};
 
       let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent));
-      document.getElementById("lampState").innerHTML = lampStates;
       let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
-      document.getElementById("circuitImg").src = filePath;
   }
 
   function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-open-none.png"}
