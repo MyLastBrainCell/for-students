@@ -8,12 +8,12 @@ function getInputValue(){
     let circuitSwitch = body.getElementById("circuitSwitch").value;
     let lampMinCurrent = body.getElementById("lampMinCurrent").value;
 
-    if (V.length === 0) {V = 12};
-    if (RA.length === 0) {RA = 5};
-    if (RB.length === 0) {RB = 8};
-    if (RC.length === 0) {RC = 1};
-    if (circuitSwitch !== 'open' && circuitSwitch !== 'closed') {xNameInput = 'open'};
-    if (lampMinCurrent.length === 0) {yNameInput = 0.05};
+    //if (V.length === 0) {V = 12};
+    //if (RA.length === 0) {RA = 5};
+    //if (RB.length === 0) {RB = 8};
+    //if (RC.length === 0) {RC = 1};
+    //if (circuitSwitch !== 'open' && circuitSwitch !== 'closed') {xNameInput = 'open'};
+    //if (lampMinCurrent.length === 0) {yNameInput = 0.05};
     
     let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
