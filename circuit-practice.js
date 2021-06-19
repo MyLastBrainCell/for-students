@@ -15,13 +15,6 @@ function getInputValue(){
     if (circuitSwitch !== 'open' && circuitSwitch !== 'closed') {xNameInput = 'open'};
     if (lampMinCurrent.length === 0) {yNameInput = 0.05};
     
-    let V = 12;
-    let RA = 5;
-    let RB = 8;
-    let RC = 1;
-    let circuitSwitch = "open";
-    let lampMinCurrent = 0.05;
-
     let lampStates = String(GetLampState(Voltage,RA,RB,circuitSwitch,LampMinCurrent));
     let filePath = 'https://hosting.photobucket.com/images/i/MyLastBrainCell/' + imgMatcher(lampStates,circuitSwitch);
 }
