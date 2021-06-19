@@ -22,7 +22,7 @@ function getInputValue(){
   document.getElementById("circuitImg").src = filePath;
 }
 
-function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-open-none.png"}
+function resetBox() {document.getElementById("circuitImg").src = "https://hosting.photobucket.com/images/i/MyLastBrainCell/circuit-open-none(1).png"}
 
 
 function GetLampState(Voltage,RA,RB,circuitSwitch,lampMinCurrent) {
