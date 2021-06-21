@@ -1,14 +1,27 @@
+function inputToList(listIn) {
+  let listOut = listIn.split(",");
+  listOut[0] = listOut[0].slice(1);
+  listOut[listOut.length - 1] = listOut[listOut.length - 1].slice(0,listOut[listOut.length - 1].length - 1);
+
+  for (let i = 0 ; i < listOut.length ; i++) {listOut[i] = Number(listOut[i])}
+}
+
 function getInputValue(){
     // Selecting the input element and get its value 
 
-    let xInput = document.getElementById("horizontalData").value;
-    let yInput = document.getElementById("verticalData").value;
-    let xUncInput = document.getElementById("horizontalUnc").value;
-    let yUncInput = document.getElementById("verticalUnc").value;
+    let xInput = inputToList(document.getElementById("horizontalData").value);
+    let yInput = inputToList(document.getElementById("verticalData").value);
+    let xUncInput = inputToList(document.getElementById("horizontalUnc").value);
+    let yUncInput = inputToList(document.getElementById("verticalUnc").value);
     let xNameInput = document.getElementById("horizontalLabel").value;
     let yNameInput = document.getElementById("verticalLabel").value;
     let xUnitInput = document.getElementById("horizontalUnit").value;
     let yUnitInput = document.getElementById("verticalUnit").value;
+    
+    let xList = []
+    let yList = []
+    
+    for (let i = 0 ; i < xInput.split(",").length ;
 
     if (xInput.length === 0) {xInput = [0,0,0]};
     if (yInput.length === 0) {yInput = [0,0,0]};
