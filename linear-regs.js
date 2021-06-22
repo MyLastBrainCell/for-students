@@ -71,7 +71,6 @@ function RoundUnc(x, dx) {
   placeholder = Math.round(placeholder);
 
   if (placeholder < 0) {
-    console.log('good');
     return [
       Math.round(x * 10 ** placeholder) * 10 ** Math.abs(placeholder),
       round_dx,
@@ -156,7 +155,7 @@ function getInputValue(){
 function ExampleLinear() {
   let xInput = [1,2,3];
   let yInput = [3,4.9,7];
-  let xUncInput = [1,1,1];
+  let xUncInput = [1,1,]
   let yUncInput = [1,1,1];
   let xNameInput = 'r';
   let yNameInput = 'd';
@@ -166,15 +165,20 @@ function ExampleLinear() {
   LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,xUnitInput,yUnitInput);
 }
 
-function LinearRegs(x,y,yUnc) {
+function LinearRegs(x,y,xUnc,yUnc) {
 
   let n = x.length;
   let w = [];
   let xbarNum = 0;
   let ybarNum = 0;
   let D = 0;
+  let ODR = 0;
 
-  for (let i = 0 ; i < yUnc.length ; i++) {if (yUnc[i] !== 0) {w.push(yUnc[i]**(-2))} else {w.push(1)}};
+  for (let i = 0 ; i < yUnc.length ; i++) {
+    ODR = Math.sqrt( yUnc[i]**2 + xUnc[i]**2 )
+    //if (yUnc[i] !== 0) {w.push(yUnc[i]**(-2))} else {w.push(1)}
+    if (ODR !== 0) {w.push(ODR**(-2))} else {w.push(1)}
+    };
 
   for (let i = 0 ; i < x.length ; i++) {
     xbarNum += w[i] * x[i];
@@ -210,7 +214,7 @@ function LinearRegs(x,y,yUnc) {
 
 function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,xUnitInput,yUnitInput) {
 
-  let fitParam = LinearRegs(xInput,yInput,yUncInput);
+  let fitParam = LinearRegs(xInput,yInput,xUncInput,yUncInput);
 
   let mStr = RoundUnc(fitParam[0],fitParam[1]);
   let cStr = RoundUnc(fitParam[2],fitParam[3]);
@@ -273,6 +277,11 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,x
   var trace1 = {
     x: xInput,
     y: yInput,
+    error_x: {
+      type: 'data',
+      array: xUncInput,
+      visible: true
+    },
     error_y: {
       type: 'data',
       array: yUncInput,
@@ -295,4 +304,3 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,x
 
   Plotly.newPlot('myDiv', data,layout);
 };
-
