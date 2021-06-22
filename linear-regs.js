@@ -4,6 +4,8 @@ function inputToList(listIn) {
   listOut[listOut.length - 1] = listOut[listOut.length - 1].slice(0,listOut[listOut.length - 1].length - 1);
 
   for (let i = 0 ; i < listOut.length ; i++) {listOut[i] = Number(listOut[i])}
+  
+  return listOut;
 }
 
 function getInputValue(){
@@ -21,7 +23,7 @@ function getInputValue(){
     let xList = []
     let yList = []
     
-    for (let i = 0 ; i < xInput.split(",").length ;
+    //for (let i = 0 ; i < xInput.split(",").length) ;
 
     if (xInput.length === 0) {xInput = [0,0,0]};
     if (yInput.length === 0) {yInput = [0,0,0]};
@@ -180,8 +182,6 @@ function ExampleLinear() {
 
   function LinearRegs(x,y,yUnc) {
 
-    // x = [float(f) for f in x]
-    // y = [float(f) for f in y]
     // y_err = [float(f) for f in y_err]
 
     // axis = np.linspace(x[0],x[len(x)-1],len(x))
@@ -231,15 +231,15 @@ function ExampleLinear() {
 
   //console.log(LinearRegs([1,2,3],[3,5,7.2],[1,1,1]));
 
-  xInput = [1,2,3];
-  yInput = [3,4.9,7];
-  yUncInput = [1,1,1];
-  xNameInput = 'r';
-  yNameInput = 'd';
-  xUnitInput = 'm';
-  yUnitInput = 'm';
+  let xInput = [1,2,3];
+  let yInput = [3,4.9,7];
+  let yUncInput = [1,1,1];
+  let xNameInput = 'r';
+  let yNameInput = 'd';
+  let xUnitInput = 'm';
+  let yUnitInput = 'm';
 
-  fitParam = LinearRegs(xInput,yInput,yUncInput);
+  let fitParam = LinearRegs(xInput,yInput,yUncInput);
   console.log(fitParam);
   console.log([ xInput[0] , xInput[xInput.length-1]]);
   console.log([ fitParam[0] * xInput[0] + fitParam[2] , fitParam[0] * xInput[xInput.length-1] + fitParam[2] ]);
@@ -332,5 +332,3 @@ var trace2 = {
 var data = [trace1, trace2];
 
 Plotly.newPlot('myDiv', data,layout);
-    
-
