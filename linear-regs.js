@@ -306,7 +306,4 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,x
 };
 
 
-ExampleLinear();
-
-
 
