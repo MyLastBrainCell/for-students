@@ -155,8 +155,8 @@ function getInputValue(){
 function ExampleLinear() {
   let xInput = [1,2,3];
   let yInput = [3,4.9,7];
-  let xUncInput = [1,1,]
-  let yUncInput = [1,1,1];
+  let xUncInput = [0.1,0.1,0.1]
+  let yUncInput = [0.5,0.5,0.5];
   let xNameInput = 'r';
   let yNameInput = 'd';
   let xUnitInput = 'm';
