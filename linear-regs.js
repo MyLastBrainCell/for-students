@@ -304,3 +304,9 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,x
 
   Plotly.newPlot('myDiv', data,layout);
 };
+
+
+ExampleLinear();
+
+
+
