@@ -137,8 +137,6 @@ function getInputValue(){
   let yUncInput = inputToList(document.getElementById("verticalUnc").value);
   let xNameInput = document.getElementById("horizontalLabel").value;
   let yNameInput = document.getElementById("verticalLabel").value;
-  let xUnitInput = document.getElementById("horizontalUnit").value;
-  let yUnitInput = document.getElementById("verticalUnit").value;
 
   if (xInput.length === 0) {xInput = [0,0,0]};
   if (yInput.length === 0) {yInput = [0,0,0]};
@@ -146,10 +144,8 @@ function getInputValue(){
   if (yUncInput.length === 0) {yUncInput = []; for (let i = 0; i < yInput.length ; i++) {yUncInput.push(1)}};
   if (xNameInput.length === 0) {xNameInput = 'x'};
   if (yNameInput.length === 0) {yNameInput = 'y'};
-  if (xUnitInput.length === 0) {xUnitInput = ''};
-  if (yUnitInput.length === 0) {yUnitInput = ''};
-
-  LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,xUnitInput,yUnitInput);
+  
+  LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput);
 }
 
 function ExampleLinear() {
@@ -157,12 +153,10 @@ function ExampleLinear() {
   let yInput = [3,4.9,7];
   let xUncInput = [0.1,0.1,0.1]
   let yUncInput = [0.5,0.5,0.5];
-  let xNameInput = 'r';
-  let yNameInput = 'd';
-  let xUnitInput = 'm';
-  let yUnitInput = 'm';
+  let xNameInput = 'r (m)';
+  let yNameInput = 'd (m)';
 
-  LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,xUnitInput,yUnitInput);
+  LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput);
 }
 
 function LinearRegs(x,y,xUnc,yUnc) {
@@ -176,7 +170,6 @@ function LinearRegs(x,y,xUnc,yUnc) {
 
   for (let i = 0 ; i < yUnc.length ; i++) {
     ODR = Math.sqrt( yUnc[i]**2 + xUnc[i]**2 )
-    //if (yUnc[i] !== 0) {w.push(yUnc[i]**(-2))} else {w.push(1)}
     if (ODR !== 0) {w.push(ODR**(-2))} else {w.push(1)}
     };
 
@@ -212,7 +205,7 @@ function LinearRegs(x,y,xUnc,yUnc) {
 
 };
 
-function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,xUnitInput,yUnitInput) {
+function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput) {
 
   let fitParam = LinearRegs(xInput,yInput,xUncInput,yUncInput);
 
@@ -244,7 +237,7 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,x
       linecolor: '#636363',
       linewidth: 3,
       title: {
-        text: xNameInput + " (" + xUnitInput + ")",
+        text: xNameInput,
         font: {
           family: 'Courier New, monospace',
           size: 18,
@@ -264,7 +257,7 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput,x
       linecolor: '#636363',
       linewidth: 3,
       title: {
-        text: yNameInput + " (" + yUnitInput + ")",
+        text: yNameInput,
         font: {
           family: 'Courier New, monospace',
           size: 18,
