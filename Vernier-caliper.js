@@ -1,6 +1,6 @@
 function getInputValue() {
   let inputVal = document.getElementById('myInput').value;
-  document.getElementById('top-img').style.left= String(Number(inputVal)+96) + 'px';
+  document.getElementById('top-img').style.left= String(Number(inputVal)+1196) + 'px';
   document.getElementById('measureReadout').innerHTML = 'Measurement = ' + pixToDist(inputVal) + 'mm';
 };
 
