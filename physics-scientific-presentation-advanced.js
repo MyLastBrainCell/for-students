@@ -4,9 +4,9 @@ const advancedText =
 
 const basicText = "<img src=\"https://hosting.photobucket.com/images/i/MyLastBrainCell/Jessie-star-banner.jpg\" class=\"wrapper\"></img>"
 
-basicModeDisclaimer = "Howdy partner, are you looking for the advanced content? If so, <button class=\"advButton\" onclick=\"showAdvanced()\"> Click here</button>, otherwise here is a calming photo instead.";
+basicModeDisclaimer = "Howdy partner, are you looking for the advanced content? If so, <button class=\"prettyButton\" onclick=\"showAdvanced()\"> Click here</button>, otherwise here is a calming photo instead.";
 
-advancedModeDisclaimer = "Howdy partner, are you looking for calming pictures? If so, <button class=\"advButton\" onclick=\"showBasic()\"> Click here</button>, otherwise enjoy the advanced content instead."
+advancedModeDisclaimer = "Howdy partner, are you looking for calming pictures? If so, <button class=\"prettyButton\" onclick=\"showBasic()\"> Click here</button>, otherwise enjoy the advanced content instead."
 
 function showAdvanced() {
   document.getElementById("advanced").innerHTML = advancedText;
