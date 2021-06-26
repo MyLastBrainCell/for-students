@@ -169,7 +169,7 @@ function processInput(d,L,wavelength) {
   L = Number(L);
   let source = 'coherent';
 
-  if (wavelength === 'incandescent') {wavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]; source='incoherent';}
+  if (wavelength === 'incandescent') {wavelength = [450*10**(-9),660*10**(-9),510*10**(-9),480*10**(-9),570*10**(-9),540*10**(-9),600*10**(-9),630*10**(-9),520*10**(-9),550*10**(-9),490*10**(-9),640*10**(-9)]; source='incoherent';}
   else if (wavelength ==='fluorescent') {wavelength = [480*10**(-9),570*10**(-9),660*10**(-9)]; source = 'incoherent';}
   else {wavelength = Number(wavelength)*10**(-9);};
 
