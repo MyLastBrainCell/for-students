@@ -128,7 +128,7 @@ function plotPattern(y_m,zeros,colours,intensity,source) {
      }
   };
 
-  if (source === 'incoherent') {trace1.marker.symbol = 'square';trace1.marker.line.width = 0;}
+  if (source === 'incoherent') {trace1.marker.symbol = 'line-nw';trace1.marker.line.width = 0;}
 
   var data = [ trace1 ];
 
