@@ -49,7 +49,7 @@ function wavelengthToRGB(wavelength) {
 
 
 
-function diffPattern(lam,d,L) {
+function diffPattern(lam,d,L,source) {
 
   let mMax = 0;
   let markerMax = 0;
@@ -110,15 +110,11 @@ function diffPattern(lam,d,L) {
     colourStr.push('rgba(' + String(colour[i]) + ',' + alpha_i[i] + ')');
   };
 
-  plotPattern(y_m,zeros,colourStr,intensity);
+  plotPattern(y_m,zeros,colourStr,intensity,source);
 
 };
 
-function plotPattern(y_m,zeros,colours,intensity) {
-  console.log("plot called with...");
-  console.log(y_m);
-  console.log(colours);
-  console.log(intensity);
+function plotPattern(y_m,zeros,colours,intensity,source) {
 
   var trace1 = {
     x: y_m,
@@ -126,12 +122,13 @@ function plotPattern(y_m,zeros,colours,intensity) {
     mode: 'markers',
     name: "Data",
     type: 'scatter',
-    marker: { symbol: 'square',
-              size: intensity,
+    marker: { size: intensity,
               color: colours,
-              //line: {color: 'black', width: 2},
+              line: {color: 'black', width: 2},
      }
   };
+
+  if (source === 'incoherent') {trace1.marker.symbol = 'square';trace1.marker.line.width = 0;}
 
   var data = [ trace1 ];
 
@@ -169,12 +166,12 @@ function plotPattern(y_m,zeros,colours,intensity) {
 
 function processInput(d,L,wavelength) {
   d = Number(d) * 10**(-5);
-
   L = Number(L);
+  let source = 'coherent';
 
-  if (wavelength === 'incandescent') {wavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]}
-  else if (wavelength ==='fluorescent') {wavelength = [480*10**(-9),570*10**(-9),660*10**(-9)]}
-  else {wavelength = Number(wavelength)};
+  if (wavelength === 'incandescent') {wavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]; source='incoherent';}
+  else if (wavelength ==='fluorescent') {wavelength = [480*10**(-9),570*10**(-9),660*10**(-9)]; source = 'incoherent';}
+  else {wavelength = Number(wavelength)*10**(-9);};
 
-  diffPattern(wavelength,d,L);
+  diffPattern(wavelength,d,L,source);
 }
