@@ -295,7 +295,7 @@ function LinearPlotter(xInput,yInput,xUncInput,yUncInput,xNameInput,yNameInput) 
 
   var data = [trace1, trace2];
 
-  Plotly.newPlot('myDiv', data,layout);
+  Plotly.newPlot('linearDiv', data,layout);
 };
 
 
