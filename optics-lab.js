@@ -115,7 +115,10 @@ function diffPattern(lam,d,L) {
 };
 
 function plotPattern(y_m,zeros,colours,intensity) {
-  console.log("plot called");
+  console.log("plot called with...");
+  console.log(y_m);
+  console.log(colours);
+  console.log(intensity);
 
   var trace1 = {
     x: y_m,
