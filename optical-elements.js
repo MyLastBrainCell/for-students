@@ -165,7 +165,50 @@
        },
     };
 
-    let data = [ trace1 , trace2 , trace3 , trace4 , trace5 , trace6 , trace7 ]
+    var trace8 = {
+      x: [xGrating,xScreen],
+      y: [0.75,0.75],
+      mode: 'lines',
+      name: " ",
+      line: { width: 3,
+              color: 'black',
+       },
+    };
+
+    var trace9 = {
+      x: [xGrating],
+      y: [0.75],
+      mode: 'markers',
+      name: ' ',
+      marker: {size: 10, 
+               symbol: 'triangle-left',
+               color: 'black',
+       },
+    };
+
+    var trace10 = {
+      x: [xScreen],
+      y: [0.75],
+      mode: 'markers',
+      name: ' ',
+      marker: {size: 10, 
+               symbol: 'triangle-right',
+               color: 'black',
+       },
+    };
+
+    var trace11 = {
+      x: [(xGrating + xScreen)/2],
+      y: [0.75],
+      mode: 'markers+text',
+      name: "L",
+      text: ["L"],
+      textposition: "top",
+      textfont:{'family': "Times", 'size': [25], 'color': ["black"]},
+      type: 'scatter',
+    };
+
+    let data = [ trace1 , trace2 , trace3 , trace4 , trace5 , trace6 , trace7 , trace8 , trace9 , trace10 , trace11]
 
 
     var layout = {
