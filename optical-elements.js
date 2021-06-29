@@ -75,7 +75,7 @@
 
 
 
-  function processInput(xGrating,xScreen,wavelength) {
+  function processSetupInput(xGrating,xScreen,wavelength) {
     xGrating = Number(xGrating);
     xScreen = Number(xScreen);
     let L = xScreen - xGrating;
