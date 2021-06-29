@@ -214,7 +214,7 @@
   }
 
 
-  function processInput(d,L,wavelength) {
+  function processDataInput(d,L,wavelength) {
     d = Number(d) * 10**(-5);
     L = Number(L);
     let source = 'coherent';
