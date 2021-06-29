@@ -202,6 +202,6 @@
     
     
 
-    Plotly.newPlot('myDiv',data,layout);
+    Plotly.newPlot('opticalElementDiv',data,layout);
 
   }
