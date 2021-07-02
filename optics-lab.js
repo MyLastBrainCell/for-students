@@ -104,7 +104,7 @@ function wavelengthToRGB(projectionWavelength) {
           colour.push(wavelengthToRGB(projectionWavelength[i]));
 
           if (m === 0) {intensity.push(markerMax); alpha_i.push(0.2)}
-          else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.9 * alphConst**(Math.abs(m)))};
+          else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.2 * alphConst**(Math.abs(m)))};
 
           m += 1;
         }
