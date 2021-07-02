@@ -49,7 +49,7 @@
 
 
 
-  function diffPattern(lam,d,L) {
+  function diffPattern(lam,d,calculatedL) {
 
     let mMax = 0;
     let markerMax = 0;
@@ -64,7 +64,7 @@
     while (m <= mMax) {
       
       theta_m = Math.asin(m * lam / d);
-      y_m.push(L * Math.tan(theta_m));
+      y_m.push(calculatedL * Math.tan(theta_m));
 
       m += 1;
     }
@@ -78,14 +78,14 @@
   function processSetupInput(xGrating,xScreen,wavelength) {
     xGrating = Number(xGrating);
     xScreen = Number(xScreen);
-    let L = xScreen - xGrating;
+    let calculatedL = xScreen - xGrating;
     let d = 10**(-5);
     let screenHeight = 0.6;
 
     wavelength = Number(wavelength)*10**(-9);
     let colourStr = 'rgb(' + String(wavelengthToRGB(wavelength)) + ')';
 
-    let pattern = diffPattern(wavelength,d,L);
+    let pattern = diffPattern(wavelength,d,calculatedL);
 
     let xPattern = [];
     let yPattern = [];
