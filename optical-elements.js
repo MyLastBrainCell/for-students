@@ -49,7 +49,7 @@ function WavelengthToRGB(rayTracedWavelength) {
 
 
 
-  function diffPattern(rayTracedWavelength,d,calculatedL) {
+  function rayTracedDiffPattern(rayTracedWavelength,d,calculatedL) {
 
     let mMax = 0;
     let markerMax = 0;
@@ -75,7 +75,7 @@ function WavelengthToRGB(rayTracedWavelength) {
 
 
 
-  function processSetupInput(xGrating,xScreen,rayTracedWavelength) {
+  function processRayTracedInput(xGrating,xScreen,rayTracedWavelength) {
     xGrating = Number(xGrating);
     xScreen = Number(xScreen);
     let calculatedL = xScreen - xGrating;
@@ -85,7 +85,7 @@ function WavelengthToRGB(rayTracedWavelength) {
     rayTracedWavelength = Number(rayTracedWavelength)*10**(-9);
     let colourStr = 'rgb(' + String(WavelengthToRGB(rayTracedWavelength)) + ')';
 
-    let pattern = diffPattern(rayTracedWavelength,d,calculatedL);
+    let pattern = rayTracedDiffPattern(rayTracedWavelength,d,calculatedL);
 
     let xPattern = [];
     let yPattern = [];
