@@ -88,6 +88,9 @@ function wavelengthToRGB(projectionWavelength) {
       }
     else {
       // Assume it's a list
+      if (source === 'fluorescent') {let alphConst = 0.85}
+      else {let alphConst = 0.7};
+      
       for (let i = 0 ; i < projectionWavelength.length ; i++) {
         mMax = 4;
         markerMax = 100;
@@ -101,7 +104,7 @@ function wavelengthToRGB(projectionWavelength) {
           colour.push(wavelengthToRGB(projectionWavelength[i]));
 
           if (m === 0) {intensity.push(markerMax); alpha_i.push(0.2)}
-          else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.2 * 0.7**(Math.abs(m)))};
+          else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.2 * alphConst**(Math.abs(m)))};
 
           m += 1;
         }
