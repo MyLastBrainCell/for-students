@@ -1,7 +1,7 @@
-  function wavelengthToRGB(wavelength) {
+  function projectedWavelengthToRGB(projectedWavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
 
-    wavelength *= 10**(9);
+    projectedWavelength *= 10**(9);
 
     const gamma = 0.8;
     let attenuation = 0;
@@ -9,34 +9,34 @@
     let G = 0.0;
     let B = 0.0;
 
-    if (wavelength >= 380 && wavelength <= 440) {
-      attenuation = 0.3 + 0.7 * (wavelength - 380) / (440 - 380);
-      R = ((-(wavelength - 440) / (440 - 380)) * attenuation) ** gamma;
+    if (projectedWavelength >= 380 && projectedWavelength <= 440) {
+      attenuation = 0.3 + 0.7 * (projectedWavelength - 380) / (440 - 380);
+      R = ((-(projectedWavelength - 440) / (440 - 380)) * attenuation) ** gamma;
       G = 0.0;
       B = (1.0 * attenuation) ** gamma;
     }
-    else if (wavelength >= 440 && wavelength <= 490) {
+    else if (projectedWavelength >= 440 && projectedWavelength <= 490) {
       R = 0.0;
-      G = ((wavelength - 440) / (490 - 440)) ** gamma;
+      G = ((projectedWavelength - 440) / (490 - 440)) ** gamma;
       B = 1.0;
     }
-    else if (wavelength >= 490 && wavelength <= 510) {
+    else if (projectedWavelength >= 490 && projectedWavelength <= 510) {
       R = 0.0;
       G = 1.0;
-      B = (-(wavelength - 510) / (510 - 490)) ** gamma;
+      B = (-(projectedWavelength - 510) / (510 - 490)) ** gamma;
     }
-    else if (wavelength >= 510 && wavelength <= 580) {
-      R = ((wavelength - 510) / (580 - 510)) ** gamma;
+    else if (projectedWavelength >= 510 && projectedWavelength <= 580) {
+      R = ((projectedWavelength - 510) / (580 - 510)) ** gamma;
       G = 1.0;
       B = 0.0;
     }
-    else if (wavelength >= 580 && wavelength <= 645) {
+    else if (projectedWavelength >= 580 && projectedWavelength <= 645) {
       R = 1.0;
-      G = (-(wavelength - 645) / (645 - 580)) ** gamma;
+      G = (-(projectedWavelength - 645) / (645 - 580)) ** gamma;
       B = 0.0;
     }
-    else if (wavelength >= 645 && wavelength <= 750) {
-      attenuation = 0.3 + 0.7 * (750 - wavelength) / (750 - 645);
+    else if (projectedWavelength >= 645 && projectedWavelength <= 750) {
+      attenuation = 0.3 + 0.7 * (750 - projectedWavelength) / (750 - 645);
       R = (1.0 * attenuation) ** gamma;
       G = 0.0;
       B = 0.0;
@@ -49,7 +49,7 @@
 
 
 
-  function diffPattern(lam,d,calculatedL) {
+  function diffPattern(projectedWavelength,d,calculatedL) {
 
     let mMax = 0;
     let markerMax = 0;
@@ -63,7 +63,7 @@
 
     while (m <= mMax) {
       
-      theta_m = Math.asin(m * lam / d);
+      theta_m = Math.asin(m * projectedWavelength / d);
       y_m.push(calculatedL * Math.tan(theta_m));
 
       m += 1;
@@ -75,17 +75,17 @@
 
 
 
-  function processSetupInput(xGrating,xScreen,wavelength) {
+  function processSetupInput(xGrating,xScreen,projectedWavelength) {
     xGrating = Number(xGrating);
     xScreen = Number(xScreen);
     let calculatedL = xScreen - xGrating;
     let d = 10**(-5);
     let screenHeight = 0.6;
 
-    wavelength = Number(wavelength)*10**(-9);
-    let colourStr = 'rgb(' + String(wavelengthToRGB(wavelength)) + ')';
+    projectedWavelength = Number(projectedWavelength)*10**(-9);
+    let colourStr = 'rgb(' + String(projectedWavelengthToRGB(projectedWavelength)) + ')';
 
-    let pattern = diffPattern(wavelength,d,calculatedL);
+    let pattern = diffPattern(projectedWavelength,d,calculatedL);
 
     let xPattern = [];
     let yPattern = [];
