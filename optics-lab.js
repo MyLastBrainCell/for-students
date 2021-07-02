@@ -56,7 +56,7 @@ function wavelengthToRGB(wavelength) {
 
 
 
-  function diffPattern(lam,d,L,source) {
+  function diffPattern(lam,d,inputL,source) {
 
     let mMax = 0;
     let markerMax = 0;
@@ -77,7 +77,7 @@ function wavelengthToRGB(wavelength) {
           
           theta_m = Math.asin(m * lam / d);
           //y_m.push(L * Math.tan(theta_m));
-          y_m.push( pmPercent(L * Math.tan(theta_m),5) );
+          y_m.push( pmPercent(inputL * Math.tan(theta_m),5) );
           colour.push(wavelengthToRGB(lam));
           alpha_i.push(1);
 
@@ -98,7 +98,7 @@ function wavelengthToRGB(wavelength) {
         while (m <= mMax) {
           
           theta_m = Math.asin(m * lam[i] / d);
-          y_m.push(L * Math.tan(theta_m));
+          y_m.push(inputL * Math.tan(theta_m));
           colour.push(wavelengthToRGB(lam[i]));
 
           if (m === 0) {intensity.push(markerMax); alpha_i.push(0.2)}
@@ -222,15 +222,15 @@ function wavelengthToRGB(wavelength) {
   }
 
 
-  function processDataInput(d,L,wavelength) {
+  function processDataInput(d,inputL,wavelength) {
     d = Number(d) * 10**(-5);
-    L = Number(L);
+    inputL = Number(inputL);
     let source = 'coherent';
 
     if (wavelength === 'incandescent') {wavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]; source='incoherent';}
     else if (wavelength ==='fluorescent') {wavelength = [420*10**(-9),520*10**(-9),620*10**(-9)]; source = 'incoherent';}
     else {wavelength = Number(wavelength)*10**(-9);};
 
-    diffPattern(wavelength,d,L,source);
+    diffPattern(wavelength,d,inputL,source);
 
   }
