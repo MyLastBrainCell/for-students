@@ -5,10 +5,10 @@ function pmPercent(value,percent) {
     else {return value * (1 + percent * Math.random())}  
 }
 
-function wavelengthToRGB(wavelength) {
+function wavelengthToRGB(traceWavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
 
-    wavelength *= 10**(9);
+    traceWavelength *= 10**(9);
 
     const gamma = 0.8;
     let attenuation = 0;
@@ -16,34 +16,34 @@ function wavelengthToRGB(wavelength) {
     let G = 0.0;
     let B = 0.0;
 
-    if (wavelength >= 380 && wavelength <= 440) {
-      attenuation = 0.3 + 0.7 * (wavelength - 380) / (440 - 380);
-      R = ((-(wavelength - 440) / (440 - 380)) * attenuation) ** gamma;
+    if (traceWavelength >= 380 && traceWavelength <= 440) {
+      attenuation = 0.3 + 0.7 * (traceWavelength - 380) / (440 - 380);
+      R = ((-(traceWavelength - 440) / (440 - 380)) * attenuation) ** gamma;
       G = 0.0;
       B = (1.0 * attenuation) ** gamma;
     }
-    else if (wavelength >= 440 && wavelength <= 490) {
+    else if (traceWavelength >= 440 && traceWavelength <= 490) {
       R = 0.0;
-      G = ((wavelength - 440) / (490 - 440)) ** gamma;
+      G = ((traceWavelength - 440) / (490 - 440)) ** gamma;
       B = 1.0;
     }
-    else if (wavelength >= 490 && wavelength <= 510) {
+    else if (traceWavelength >= 490 && traceWavelength <= 510) {
       R = 0.0;
       G = 1.0;
-      B = (-(wavelength - 510) / (510 - 490)) ** gamma;
+      B = (-(traceWavelength - 510) / (510 - 490)) ** gamma;
     }
-    else if (wavelength >= 510 && wavelength <= 580) {
-      R = ((wavelength - 510) / (580 - 510)) ** gamma;
+    else if (traceWavelength >= 510 && traceWavelength <= 580) {
+      R = ((traceWavelength - 510) / (580 - 510)) ** gamma;
       G = 1.0;
       B = 0.0;
     }
-    else if (wavelength >= 580 && wavelength <= 645) {
+    else if (traceWavelength >= 580 && traceWavelength <= 645) {
       R = 1.0;
-      G = (-(wavelength - 645) / (645 - 580)) ** gamma;
+      G = (-(traceWavelength - 645) / (645 - 580)) ** gamma;
       B = 0.0;
     }
-    else if (wavelength >= 645 && wavelength <= 750) {
-      attenuation = 0.3 + 0.7 * (750 - wavelength) / (750 - 645);
+    else if (traceWavelength >= 645 && traceWavelength <= 750) {
+      attenuation = 0.3 + 0.7 * (750 - traceWavelength) / (750 - 645);
       R = (1.0 * attenuation) ** gamma;
       G = 0.0;
       B = 0.0;
@@ -56,7 +56,7 @@ function wavelengthToRGB(wavelength) {
 
 
 
-  function diffPattern(lam,d,inputL,source) {
+  function diffPattern(traceWavelength,d,inputL,source) {
 
     let mMax = 0;
     let markerMax = 0;
@@ -66,7 +66,7 @@ function wavelengthToRGB(wavelength) {
     let colour = [];
     let alpha_i = [];
 
-    if (+lam === +lam) {
+    if (+traceWavelength === +traceWavelength) {
         /* check if it's a number */
         mMax = 10;
         markerMax = 15;
@@ -75,10 +75,10 @@ function wavelengthToRGB(wavelength) {
 
         while (m <= mMax) {
           
-          theta_m = Math.asin(m * lam / d);
+          theta_m = Math.asin(m * traceWavelength / d);
           //y_m.push(L * Math.tan(theta_m));
           y_m.push( pmPercent(inputL * Math.tan(theta_m),5) );
-          colour.push(wavelengthToRGB(lam));
+          colour.push(wavelengthToRGB(traceWavelength));
           alpha_i.push(1);
 
           if (m === 0) {intensity.push(markerMax)}
@@ -89,7 +89,7 @@ function wavelengthToRGB(wavelength) {
       }
     else {
       // Assume it's a list
-      for (let i = 0 ; i < lam.length ; i++) {
+      for (let i = 0 ; i < traceWavelength.length ; i++) {
         mMax = 4;
         markerMax = 100;
 
@@ -97,9 +97,9 @@ function wavelengthToRGB(wavelength) {
 
         while (m <= mMax) {
           
-          theta_m = Math.asin(m * lam[i] / d);
+          theta_m = Math.asin(m * traceWavelength[i] / d);
           y_m.push(inputL * Math.tan(theta_m));
-          colour.push(wavelengthToRGB(lam[i]));
+          colour.push(wavelengthToRGB(traceWavelength[i]));
 
           if (m === 0) {intensity.push(markerMax); alpha_i.push(0.2)}
           else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.2 * 0.7**(Math.abs(m)))};
@@ -222,15 +222,15 @@ function wavelengthToRGB(wavelength) {
   }
 
 
-  function processDataInput(d,inputL,wavelength) {
+  function processDataInput(d,inputL,traceWavelength) {
     d = Number(d) * 10**(-5);
     inputL = Number(inputL);
     let source = 'coherent';
 
-    if (wavelength === 'incandescent') {wavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]; source='incoherent';}
-    else if (wavelength ==='fluorescent') {wavelength = [420*10**(-9),520*10**(-9),620*10**(-9)]; source = 'incoherent';}
-    else {wavelength = Number(wavelength)*10**(-9);};
+    if (traceWavelength === 'incandescent') {traceWavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]; source='incoherent';}
+    else if (traceWavelength === 'fluorescent') {traceWavelength = [420*10**(-9),520*10**(-9),620*10**(-9)]; source = 'incoherent';}
+    else {traceWavelength = Number(traceWavelength)*10**(-9);};
 
-    diffPattern(wavelength,d,inputL,source);
+    diffPattern(traceWavelength,d,inputL,source);
 
   }
