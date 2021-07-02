@@ -221,7 +221,7 @@ function wavelengthToRGB(projectionWavelength) {
   }
 
 
-  function processprojectionDataInput(d,inputL,projectionWavelength) {
+  function processProjectionDataInput(d,inputL,projectionWavelength) {
     d = Number(d) * 10**(-5);
     inputL = Number(inputL);
     let source = 'coherent';
