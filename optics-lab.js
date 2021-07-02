@@ -88,7 +88,7 @@ function wavelengthToRGB(projectionWavelength) {
       }
     else {
       // Assume it's a list
-      if (source === 'fluorescent') {let alphConst = 0.95}
+      if (source === 'fluorescent') {let alphConst = 0.85}
       else {let alphConst = 0.7};
       
       for (let i = 0 ; i < projectionWavelength.length ; i++) {
