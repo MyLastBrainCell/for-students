@@ -245,6 +245,6 @@ function WavelengthToRGB(rayTracedWavelength) {
     
     
 
-    Plotly.newPlot('traceDiv',rayTracedData,rayTracedLayout);
+    Plotly.newPlot('rayTracedDiv',rayTracedData,rayTracedLayout);
 
   }
