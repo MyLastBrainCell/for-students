@@ -1,4 +1,11 @@
-  function wavelengthToRGB(wavelength) {
+
+function pmPercent(value,percent) {
+    percent *= 0.01;
+    if (Math.random() >= 0.5) {return value * (1 - percent * Math.random())}
+    else {return value * (1 + percent * Math.random())}  
+}
+
+function wavelengthToRGB(wavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
 
     wavelength *= 10**(9);
@@ -69,7 +76,8 @@
         while (m <= mMax) {
           
           theta_m = Math.asin(m * lam / d);
-          y_m.push(L * Math.tan(theta_m));
+          //y_m.push(L * Math.tan(theta_m));
+          y_m.push( pmPercent(L * Math.tan(theta_m),5) );
           colour.push(wavelengthToRGB(lam));
           alpha_i.push(1);
 
