@@ -1,7 +1,7 @@
-function projectedWavelengthToRGB(projectedWavelength) {
+function WavelengthToRGB(rayTracedWavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
 
-    projectedWavelength *= 10**(9);
+    rayTracedWavelength *= 10**(9);
 
     const gamma = 0.8;
     let attenuation = 0;
@@ -9,34 +9,34 @@ function projectedWavelengthToRGB(projectedWavelength) {
     let G = 0.0;
     let B = 0.0;
 
-    if (projectedWavelength >= 380 && projectedWavelength <= 440) {
-      attenuation = 0.3 + 0.7 * (projectedWavelength - 380) / (440 - 380);
-      R = ((-(projectedWavelength - 440) / (440 - 380)) * attenuation) ** gamma;
+    if (rayTracedWavelength >= 380 && rayTracedWavelength <= 440) {
+      attenuation = 0.3 + 0.7 * (rayTracedWavelength - 380) / (440 - 380);
+      R = ((-(rayTracedWavelength - 440) / (440 - 380)) * attenuation) ** gamma;
       G = 0.0;
       B = (1.0 * attenuation) ** gamma;
     }
-    else if (projectedWavelength >= 440 && projectedWavelength <= 490) {
+    else if (rayTracedWavelength >= 440 && rayTracedWavelength <= 490) {
       R = 0.0;
-      G = ((projectedWavelength - 440) / (490 - 440)) ** gamma;
+      G = ((rayTracedWavelength - 440) / (490 - 440)) ** gamma;
       B = 1.0;
     }
-    else if (projectedWavelength >= 490 && projectedWavelength <= 510) {
+    else if (rayTracedWavelength >= 490 && rayTracedWavelength <= 510) {
       R = 0.0;
       G = 1.0;
-      B = (-(projectedWavelength - 510) / (510 - 490)) ** gamma;
+      B = (-(rayTracedWavelength - 510) / (510 - 490)) ** gamma;
     }
-    else if (projectedWavelength >= 510 && projectedWavelength <= 580) {
-      R = ((projectedWavelength - 510) / (580 - 510)) ** gamma;
+    else if (rayTracedWavelength >= 510 && rayTracedWavelength <= 580) {
+      R = ((rayTracedWavelength - 510) / (580 - 510)) ** gamma;
       G = 1.0;
       B = 0.0;
     }
-    else if (projectedWavelength >= 580 && projectedWavelength <= 645) {
+    else if (rayTracedWavelength >= 580 && rayTracedWavelength <= 645) {
       R = 1.0;
-      G = (-(projectedWavelength - 645) / (645 - 580)) ** gamma;
+      G = (-(rayTracedWavelength - 645) / (645 - 580)) ** gamma;
       B = 0.0;
     }
-    else if (projectedWavelength >= 645 && projectedWavelength <= 750) {
-      attenuation = 0.3 + 0.7 * (750 - projectedWavelength) / (750 - 645);
+    else if (rayTracedWavelength >= 645 && rayTracedWavelength <= 750) {
+      attenuation = 0.3 + 0.7 * (750 - rayTracedWavelength) / (750 - 645);
       R = (1.0 * attenuation) ** gamma;
       G = 0.0;
       B = 0.0;
@@ -49,7 +49,7 @@ function projectedWavelengthToRGB(projectedWavelength) {
 
 
 
-  function diffPattern(projectedWavelength,d,calculatedL) {
+  function diffPattern(rayTracedWavelength,d,calculatedL) {
 
     let mMax = 0;
     let markerMax = 0;
@@ -63,7 +63,7 @@ function projectedWavelengthToRGB(projectedWavelength) {
 
     while (m <= mMax) {
       
-      theta_m = Math.asin(m * projectedWavelength / d);
+      theta_m = Math.asin(m * rayTracedWavelength / d);
       y_m.push(calculatedL * Math.tan(theta_m));
 
       m += 1;
@@ -75,17 +75,17 @@ function projectedWavelengthToRGB(projectedWavelength) {
 
 
 
-  function processSetupInput(xGrating,xScreen,projectedWavelength) {
+  function processSetupInput(xGrating,xScreen,rayTracedWavelength) {
     xGrating = Number(xGrating);
     xScreen = Number(xScreen);
     let calculatedL = xScreen - xGrating;
     let d = 10**(-5);
     let screenHeight = 0.6;
 
-    projectedWavelength = Number(projectedWavelength)*10**(-9);
-    let colourStr = 'rgb(' + String(projectedWavelengthToRGB(projectedWavelength)) + ')';
+    rayTracedWavelength = Number(rayTracedWavelength)*10**(-9);
+    let colourStr = 'rgb(' + String(WavelengthToRGB(rayTracedWavelength)) + ')';
 
-    let pattern = diffPattern(projectedWavelength,d,calculatedL);
+    let pattern = diffPattern(rayTracedWavelength,d,calculatedL);
 
     let xPattern = [];
     let yPattern = [];
@@ -208,10 +208,10 @@ function projectedWavelengthToRGB(projectedWavelength) {
       type: 'scatter',
     };
 
-    let projectionData = [ trace1 , trace2 , trace3 , trace4 , trace5 , trace6 , trace7 , trace8 , trace9 , trace10 , trace11]
+    let rayTracedData = [ trace1 , trace2 , trace3 , trace4 , trace5 , trace6 , trace7 , trace8 , trace9 , trace10 , trace11]
 
 
-    var projectionLayout = {
+    var rayTracedLayout = {
 
       xaxis: {
         showgrid: true,
@@ -245,6 +245,6 @@ function projectedWavelengthToRGB(projectedWavelength) {
     
     
 
-    Plotly.newPlot('opticalElementDiv',projectionData,projectionLayout);
+    Plotly.newPlot('traceDiv',rayTracedData,rayTracedLayout);
 
   }
