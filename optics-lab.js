@@ -100,8 +100,8 @@ function wavelengthToRGB(projectionWavelength) {
           y_m.push(inputL * Math.tan(theta_m));
           colour.push(wavelengthToRGB(projectionWavelength[i]));
 
-          if (m === 0) {intensity.push(markerMax); alpha_i.push(0.2)}
-          else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.2 * 0.7**(Math.abs(m)))};
+          if (m === 0) {intensity.push(markerMax); alpha_i.push(0.3)}
+          else {intensity.push(markerMax * 0.9**(Math.abs(m))); alpha_i.push(0.3 * 0.7**(Math.abs(m)))};
 
           m += 1;
         }
