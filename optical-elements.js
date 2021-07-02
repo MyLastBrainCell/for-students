@@ -1,4 +1,4 @@
-  function projectedWavelengthToRGB(projectedWavelength) {
+function projectedWavelengthToRGB(projectedWavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
 
     projectedWavelength *= 10**(9);
@@ -208,10 +208,10 @@
       type: 'scatter',
     };
 
-    let data = [ trace1 , trace2 , trace3 , trace4 , trace5 , trace6 , trace7 , trace8 , trace9 , trace10 , trace11]
+    let projectionData = [ trace1 , trace2 , trace3 , trace4 , trace5 , trace6 , trace7 , trace8 , trace9 , trace10 , trace11]
 
 
-    var layout = {
+    var projectionLayout = {
 
       xaxis: {
         showgrid: true,
@@ -245,6 +245,6 @@
     
     
 
-    Plotly.newPlot('opticalElementDiv',data,layout);
+    Plotly.newPlot('opticalElementDiv',projectionData,projectionLayout);
 
   }
