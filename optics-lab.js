@@ -1,4 +1,3 @@
-
 function pmPercent(value,percent) {
     percent *= 0.01;
     if (Math.random() >= 0.5) {return value * (1 - percent * Math.random())}
@@ -125,7 +124,7 @@ function wavelengthToRGB(traceWavelength) {
 
   function plotPattern(y_m,zeros,colours,intensity) {
 
-    var trace1 = {
+    var trace21 = {
       x: y_m,
       y: zeros,
       mode: 'markers',
@@ -137,7 +136,7 @@ function wavelengthToRGB(traceWavelength) {
        }
     };
 
-    var data = [ trace1 ];
+    var data = [ trace21 ];
 
     var layout = {
 
