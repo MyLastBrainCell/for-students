@@ -1,3 +1,4 @@
+  function processSeparationInput(r) {
     r = Number(r);
     let xCharge = 0;
     let xDipole = r;
