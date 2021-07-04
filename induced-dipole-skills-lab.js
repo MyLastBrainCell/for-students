@@ -126,7 +126,7 @@
         zerolinewidth: 2,
         linecolor: '#636363',
         linewidth: 3,
-        range: [-0.03, 0.25],
+        range: [-0.03, 0.2],
         title: {
           text: "x (m)",
         }
