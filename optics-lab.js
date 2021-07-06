@@ -190,7 +190,6 @@ function wavelengthToRGB(projectionWavelength) {
     }
 
     var projectionLayout = {
-      paper_bgcolor: 'black',
       xaxis: {
         showgrid: true,
         zeroline: true,
