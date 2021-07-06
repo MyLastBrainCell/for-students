@@ -218,7 +218,7 @@ function wavelengthToRGB(projectionWavelength) {
       }
     };
 
-    Plotly.newPlot('projectionDiv',projectionData,projectionLayout);
+    Plotly.newPlot('whiteLightDiv',projectionData,projectionLayout);
   }
 
 
