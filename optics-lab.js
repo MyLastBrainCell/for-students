@@ -190,6 +190,8 @@ function wavelengthToRGB(projectionWavelength) {
     }
 
     var projectionLayout = {
+      plot_bgcolor:"black",
+      paper_bgcolor:"#FFF3",
       xaxis: {
         showgrid: true,
         zeroline: true,
