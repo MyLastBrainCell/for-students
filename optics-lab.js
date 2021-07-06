@@ -130,6 +130,7 @@ function wavelengthToRGB(projectionWavelength) {
       mode: 'markers',
       name: "projectionData",
       type: 'scatter',
+      showlegend: false,
       marker: { size: intensity,
                 color: colours,
                 line: {color: 'black', width: 2},
@@ -181,6 +182,7 @@ function wavelengthToRGB(projectionWavelength) {
         x: [y_m[i] , y_m[i]],
         y: [-intensity[i]/100 , intensity[i]/100],
         mode: 'lines',
+        showlegend: false,
         line: {
           color: colours[i],
           width: 1200/intensity[i],
