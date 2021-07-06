@@ -175,6 +175,10 @@ function wavelengthToRGB(projectionWavelength) {
   function plotIncoherentPattern(y_m,zeros,colours,intensity) {
 
     var projectionData = [];
+      
+    y_m.push(0);
+    intensity.push(100);
+    colours.push('white');
 
     for (let i = 0 ; i < y_m.length ; i++) {
       
