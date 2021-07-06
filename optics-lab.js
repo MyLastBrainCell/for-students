@@ -224,6 +224,58 @@ function wavelengthToRGB(projectionWavelength) {
   }
 
 
+  function blankIncoherent() {
+
+    var projectionData = [];
+
+    for (let i = 0 ; i < y_m.length ; i++) {
+      
+      let tempTrace = {
+        x: [0],
+        y: [0],
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          color: colours[i],
+          width: 0,
+        },
+      }
+      projectionData.push(tempTrace);
+    }
+
+    var projectionLayout = {
+      plot_bgcolor:"black",
+      paper_bgcolor:"#FFF3",
+      xaxis: {
+        showgrid: true,
+        zeroline: true,
+        showline: true,
+        mirror: 'ticks',
+        gridcolor: '#bdbdbd',
+        gridwidth: 2,
+        zerolinecolor: '#969696',
+        zerolinewidth: 2,
+        linecolor: '#636363',
+        linewidth: 3,
+      },
+      yaxis: {
+        showgrid: true,
+        zeroline: true,
+        showline: true,
+        mirror: 'ticks',
+        gridcolor: '#bdbdbd',
+        gridwidth: 2,
+        zerolinecolor: '#969696',
+        zerolinewidth: 2,
+        linecolor: '#636363',
+        linewidth: 3,
+      }
+    };
+
+    Plotly.newPlot('whiteLightDiv',projectionData,projectionLayout);
+  }
+
+
   function processProjectionDataInput(d,inputL,projectionWavelength) {
     d = Number(d) * 10**(-5);
     inputL = Number(inputL);
