@@ -233,11 +233,10 @@ function wavelengthToRGB(projectionWavelength) {
       let tempTrace = {
         x: [0],
         y: [0],
-        mode: 'lines',
+        mode: 'markers',
         showlegend: false,
-        line: {
-          color: colours[i],
-          width: 0,
+        marker: {
+          size: 1,
         },
       }
       projectionData.push(tempTrace);
