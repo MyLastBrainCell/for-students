@@ -233,7 +233,7 @@ function wavelengthToRGB(projectionWavelength) {
     inputL = Number(inputL);
     let source = 'coherent';
 
-    if (projectionWavelength === 'incandescent') {projectionWavelength = [450*10**(-9),480*10**(-9),510*10**(-9),540*10**(-9),570*10**(-9),600*10**(-9),630*10**(-9),660*10**(-9)]; source='incoherent';}
+    if (projectionWavelength === 'incandescent') {projectionWavelength = [450*10**(-9),465*10**(-9),480*10**(-9),495*10**(-9),510*10**(-9),525*10**(-9),540*10**(-9),555*10**(-9),570*10**(-9),585*10**(-9),600*10**(-9),615*10**(-9),630*10**(-9),645*10**(-9),660*10**(-9)]; source='incoherent';}
     else if (projectionWavelength === 'fluorescent') {projectionWavelength = [420*10**(-9),520*10**(-9),620*10**(-9)]; source = 'incoherent';}
     else {projectionWavelength = Number(projectionWavelength)*10**(-9);};
 
