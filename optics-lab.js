@@ -235,7 +235,55 @@ function wavelengthToRGB(projectionWavelength) {
 
     if (projectionWavelength === 'incandescent') {projectionWavelength = [450*10**(-9),465*10**(-9),480*10**(-9),495*10**(-9),510*10**(-9),525*10**(-9),540*10**(-9),555*10**(-9),570*10**(-9),585*10**(-9),600*10**(-9),615*10**(-9),630*10**(-9),645*10**(-9),660*10**(-9)]; source='incoherent';}
     else if (projectionWavelength === 'fluorescent') {projectionWavelength = [420*10**(-9),520*10**(-9),620*10**(-9)]; source = 'incoherent';}
-    else if (projectionWavelength === 'blank') {projectionWavelength = [10**(-9)]; source = 'incoherent';}
+    else if (projectionWavelength === 'blank') {
+        
+        
+       let trace1 = {
+        x: [0],
+        y: [0],
+        mode: 'markers',
+        showlegend: false,
+        marker: {
+          color: 'black',
+          size: 1,
+        },
+      }
+      
+      var projectionLayout = {
+          plot_bgcolor:"black",
+          paper_bgcolor:"#FFF3",
+          xaxis: {
+            showgrid: true,
+            zeroline: true,
+            showline: true,
+            mirror: 'ticks',
+            gridcolor: '#bdbdbd',
+            gridwidth: 2,
+            zerolinecolor: '#969696',
+            zerolinewidth: 2,
+            linecolor: '#636363',
+            linewidth: 3,
+          },
+          yaxis: {
+            showgrid: true,
+            zeroline: true,
+            showline: true,
+            mirror: 'ticks',
+            gridcolor: '#bdbdbd',
+            gridwidth: 2,
+            zerolinecolor: '#969696',
+            zerolinewidth: 2,
+            linecolor: '#636363',
+            linewidth: 3,
+          }
+        };
+        
+        let emptyData = [ trace1 ];
+
+        Plotly.newPlot('whiteLightDiv',emptyData,projectionLayout);
+    
+    }
+      
     else {projectionWavelength = Number(projectionWavelength)*10**(-9);};
 
     diffPattern(projectionWavelength,d,inputL,source);
