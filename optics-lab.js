@@ -58,8 +58,6 @@ function wavelengthToRGB(projectionWavelength) {
   function diffPattern(projectionWavelength,d,inputL,source) {
       
     console.log("diffPattern called");
-    console.log(source);
-    console.log('ye');
 
     let mMax = 0;
     let markerMax = 0;
