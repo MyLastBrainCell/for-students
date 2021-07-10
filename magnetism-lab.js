@@ -1,7 +1,12 @@
 
-  function processSystemInput(sample,omegaZero) {
+  function processSystemInput(sample,omegaZero,dist) {
+    let muNaught = 1.257 * 10 **(-6);
+    let mu = 25;
     let N = 200;
-    let B = 0.01;
+    // z = 8cm was roughly the lowest distance from memory
+    let z = dist;
+    //let B = 0.01;
+    let B = (2 * muNaught * mu) / (4 * Math.PI * z**3)
     let r = 0.02;
     let A = Math.PI * r**2;
 
