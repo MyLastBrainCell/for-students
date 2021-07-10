@@ -1,4 +1,5 @@
 function pmPercent(value,percent) {
+    console.log('pmPercent called');
     percent *= 0.01;
     if (Math.random() >= 0.5) {return value * (1 - percent * Math.random())}
     else {return value * (1 + percent * Math.random())}  
@@ -6,6 +7,8 @@ function pmPercent(value,percent) {
 
 function wavelengthToRGB(projectionWavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
+    
+    console.log('wavelengthToRGB called');
 
     projectionWavelength *= 10**(9);
 
@@ -235,6 +238,8 @@ function wavelengthToRGB(projectionWavelength) {
 
 
   function processProjectionDataInput(d,inputL,projectionWavelength) {
+    console.log('processProjectionDataInput called');
+      
     d = Number(d) * 10**(-5);
     inputL = Number(inputL);
     let source = 'coherent';
@@ -242,7 +247,8 @@ function wavelengthToRGB(projectionWavelength) {
     if (projectionWavelength === 'incandescent') {projectionWavelength = [450*10**(-9),465*10**(-9),480*10**(-9),495*10**(-9),510*10**(-9),525*10**(-9),540*10**(-9),555*10**(-9),570*10**(-9),585*10**(-9),600*10**(-9),615*10**(-9),630*10**(-9),645*10**(-9),660*10**(-9)]; source='incoherent';}
     else if (projectionWavelength === 'fluorescent') {projectionWavelength = [420*10**(-9),520*10**(-9),620*10**(-9)]; source = 'incoherent';}
     else if (projectionWavelength === 'blank') {
-        
+       
+       console.log('blank plot to be produced');
         
        let trace1 = {
         x: [0],
