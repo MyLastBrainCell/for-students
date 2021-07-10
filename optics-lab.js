@@ -177,6 +177,8 @@ function wavelengthToRGB(projectionWavelength) {
 
 
   function plotIncoherentPattern(y_m,zeros,colours,intensity) {
+      
+    console.log('plotIncoherentPattern called');
 
     var projectionData = [];
       
