@@ -125,6 +125,8 @@ function wavelengthToRGB(projectionWavelength) {
   };
 
   function plotPattern(y_m,zeros,colours,intensity) {
+      
+    console.log('plotPattern called');
 
     var trace21 = {
       x: y_m,
