@@ -1,5 +1,4 @@
 function pmPercent(value,percent) {
-    console.log('pmPercent called');
     percent *= 0.01;
     if (Math.random() >= 0.5) {return value * (1 - percent * Math.random())}
     else {return value * (1 + percent * Math.random())}  
@@ -7,8 +6,6 @@ function pmPercent(value,percent) {
 
 function wavelengthToRGB(projectionWavelength) {
     //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
-    
-    console.log('wavelengthToRGB called');
 
     projectionWavelength *= 10**(9);
 
