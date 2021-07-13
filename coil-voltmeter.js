@@ -3,7 +3,7 @@ function singleWire(px) {
   let mu = 25;
   let dist = (px - 180) * 10**(-3);
 
-  return Math.round( 10000*( dist**(-3) - (dist-0.05)**(-3) ) * (muNaught * mu) / (2 * Math.PI) )/10000
+  return Math.round( 1000*100*( dist**(-3) - (dist-0.05)**(-3) ) * (muNaught * mu) / (2 * Math.PI) )/100
 }
 
 function sumWire(px) {
@@ -16,5 +16,5 @@ function sumWire(px) {
     //console.log('new total = ' + String(total));
   }
 
-  return Math.round(total*10000)/10000
+  return Math.round(total*1000*100)/100
 }
