@@ -10,11 +10,8 @@ function sumWire(px) {
 
   let total = 0;
   for (let i = 280; i <= px ; i++) {
-    //console.log('i = ' + String(i));
-    //console.log('singleWire() = ' + String(singleWire(i)));
     total += singleWire(i);
-    //console.log('new total = ' + String(total));
   }
 
-  return Math.round(total*1000*100)/100
+  return Math.round(total*100)/100
 }
