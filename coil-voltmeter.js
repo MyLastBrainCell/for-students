@@ -9,7 +9,7 @@ function singleWire(px) {
 function sumWire(px) {
 
   let total = 0;
-  for (let i = 280; i <= px ; i++) {
+  for (let i = 280; i <= px ; i+=10) {
     total += singleWire(i);
   }
 
