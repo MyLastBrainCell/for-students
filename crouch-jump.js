@@ -6,17 +6,24 @@
       //var velContext = velCanvas.getContext("2d");
       var x, y, vx, vy;                           // position and velocity
       var timer;                                  // for animation timing
-      let theta = (Math.PI/180)*document.getElementById('thetaSlider').value;
+      let thetaInitialDeg = document.getElementById('thetaSlider').value;
+      let thetaInitial = (Math.PI/180)*thetaInitialDeg;
+      let thetaCurrentDeg = document.getElementById('thetaSlider').value;
+      let thetaCurrent = (Math.PI/180)*thetaCurrentDeg;
 
+      let runSim = 'off';
+      let iterProtect = 0;
 
+      const footXInitial = 329;
+      const footYInitial = 427;
+      let footX = 329;
+      let footY = 427;
 
-      function drawProjectile() {
+      function drawProjectile(theta) {
           theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
           //velContext.clearRect(0, 0, velCanvas.width, velCanvas.height);
           var legR = 35;
           var headR = 50;
-          var footX = 329;
-          var footY = 427;
         
           var kneeX = footX;
           var kneeY = footY - legR;
@@ -78,15 +85,54 @@
           trailContext.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
       }
 
-      function updateCoords() {
-        drawProjectile();
-        document.getElementById('cartPos').innerHTML = '\\( \\theta_i = ' + Math.round(document.getElementById('thetaSlider').value) + '^{o} \\)';
-        theta = (Math.PI/180)*document.getElementById('thetaSlider').value;
-        MathJax.typeset();
-       
+      function updateCoords(angle) {
+        thetaCurrentDeg = angle;
+        thetaCurrent = (Math.PI/180)*angle;
+        console.log('current is ' + String(thetaCurrentDeg));
+        angle = (Math.PI/180)*angle;
+        drawProjectile(angle);
+      }
+
+      function raiseBody() {
+        angle = Math.round(thetaCurrentDeg);
+        iterProtect += 1;
+        if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
+          angle -= 1;
+          updateCoords(angle);
+        }
+        else if (Math.round(angle*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
+          if (footY >= 330 && runSim === 'up') {footY -= 2; updateCoords(0)}
+          else if (footY <= 330 || (footY < footYInitial && runSim === 'down')) {runSim = 'down'; footY += 2; updateCoords(0)}
+          else if (footY >= footYInitial && runSim === 'down') {console.log('please die'); runSim = 'resetting'; updateCoords(0)}
+        }
+        else if (runSim === 'resetting' && Math.round(angle) !== Math.round(thetaInitialDeg)) {
+          console.log('yas!');
+          console.log(angle);
+          angle += 1;
+          updateCoords(angle);
+        }
+        else {runSim = 'off'};
+      }
+
+      function dropBody() {
+        angle = Math.round(thetaCurrentDeg);
+        if (Math.round(angle*10)/10 !== thetaInitialDeg) {
+          angle += 1;
+          updateCoords(angle);
+          console.log(angle);
+        }
       }
       
-        drawProjectile();
-      
-      
+        drawProjectile(thetaInitial);
 
+    function registerClick() {
+      iterProtect = 0;
+      runSim = 'up';
+      console.log('registerClick() with ' + String(document.getElementById('thetaSlider').value))
+      const id = setInterval(function() {
+        if ( (Math.round(thetaCurrentDeg) !== thetaInitialDeg || runSim !== 'off') && iterProtect < 300) {raiseBody();}
+        else {
+          clearInterval(id);
+          }
+      }, 20); 
+    }
