@@ -35,7 +35,7 @@
           var headY = buttY - Math.sqrt(headR**2 - (headX - buttX)**2);
 
           theContext.beginPath();
-          theContext.arc(footX, footY, 7, 0, 2*Math.PI);
+          theContext.arc(footX, footY, 6, 0, 2*Math.PI);
           var theGradient = theContext.createRadialGradient(footX-1, footY-2, 1, footX, footY, 5);
           theGradient.addColorStop(0, "#ffd0d0");
           theGradient.addColorStop(1, "#ff0000");
@@ -43,7 +43,7 @@
           theContext.fill();
 
           theContext.beginPath();
-          theContext.arc(kneeX, kneeY, 1, 0, 2*Math.PI);
+          theContext.arc(kneeX, kneeY, 5, 0, 2*Math.PI);
           var theGradient = theContext.createRadialGradient(kneeX-1, kneeY-2, 1, kneeX, kneeY, 5);
           theGradient.addColorStop(0, "#ffd0d0");
           theGradient.addColorStop(1, "#ff0000");
