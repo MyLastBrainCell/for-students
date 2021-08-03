@@ -43,7 +43,7 @@
           theContext.fill();
 
           theContext.beginPath();
-          theContext.arc(kneeX, kneeY, 5, 0, 2*Math.PI);
+          theContext.arc(kneeX, kneeY, 1, 0, 2*Math.PI);
           var theGradient = theContext.createRadialGradient(kneeX-1, kneeY-2, 1, kneeX, kneeY, 5);
           theGradient.addColorStop(0, "#ffd0d0");
           theGradient.addColorStop(1, "#ff0000");
