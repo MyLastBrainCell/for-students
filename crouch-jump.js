@@ -146,7 +146,7 @@
       const id = setInterval(function() {
         thetaInitialDeg = document.getElementById('thetaSlider').value;
         thetaInitial = (Math.PI/180)*thetaInitialDeg;
-        if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 2000) {raiseBody();}
+        if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 500) {raiseBody();}
         else {
           clearInterval(id);
           }
