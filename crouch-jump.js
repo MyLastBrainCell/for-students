@@ -19,6 +19,8 @@
       let footX = 329;
       let footY = 427;
 
+      let dTheta = 1;
+
       function drawProjectile(theta) {
           theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
           //velContext.clearRect(0, 0, velCanvas.width, velCanvas.height);
@@ -96,8 +98,10 @@
       function raiseBody() {
         angle = Math.round(thetaCurrentDeg);
         iterProtect += 1;
+        dTheta *= 1.1;    
+            
         if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
-          angle -= 1;
+          angle -= dTheta;
           updateCoords(angle);
         }
         else if (Math.round(angle*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
@@ -108,7 +112,7 @@
         else if (runSim === 'resetting' && Math.round(angle) !== Math.round(thetaInitialDeg)) {
           console.log('yas!');
           console.log(angle);
-          angle += 1;
+          angle += dTheta;
           updateCoords(angle);
         }
         else {runSim = 'off'};
