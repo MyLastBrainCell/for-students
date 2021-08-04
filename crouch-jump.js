@@ -104,7 +104,7 @@
           angle -= dTheta;
           updateCoords(angle);
         }
-        else if (Math.round(angle*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
+        else if (Math.round((angle-dTheta)*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
           if (footY >= 330 && runSim === 'up') {footY -= 2; updateCoords(0)}
           else if (footY <= 330 || (footY < footYInitial && runSim === 'down')) {runSim = 'down'; footY += 2; updateCoords(0)}
           else if (footY >= footYInitial && runSim === 'down') {console.log('please die'); runSim = 'resetting'; updateCoords(0)}
