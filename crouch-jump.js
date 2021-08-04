@@ -1,5 +1,3 @@
-      // Thank you to Daniel V. Schroeder for the base code!
-
       var theCanvas = document.getElementById("theCanvas");   // for drawing the projectile
       var theContext = theCanvas.getContext("2d");
       //var velCanvas = document.getElementById("velCanvas");   // for drawing the projectile
@@ -98,34 +96,25 @@
       function raiseBody() {
         angle = Math.round(thetaCurrentDeg);
         iterProtect += 1;
-        dTheta *= 1;    
+        dTheta *= 1.01;
             
         if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
           angle -= dTheta;
           updateCoords(angle);
         }
-        else if (Math.round(angle*10)/10 !== 0 && runSim !== 'resetting' && runSim !== 'off') {
+        else if (Math.round((angle-dTheta)*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
           if (footY >= 330 && runSim === 'up') {footY -= 2; updateCoords(0)}
           else if (footY <= 330 || (footY < footYInitial && runSim === 'down')) {runSim = 'down'; footY += 2; updateCoords(0)}
           else if (footY >= footYInitial && runSim === 'down') {console.log('please die'); runSim = 'resetting'; updateCoords(0)}
         }
-        else if (runSim === 'resetting' && Math.round(angle) !== Math.round(thetaInitialDeg)) {
-          console.log('yas!');
-          console.log(angle);
+        else if (runSim === 'resetting' && (angle - thetaInitialDeg) <= 0) {
+          console.log(dTheta);
           angle += dTheta;
           updateCoords(angle);
         }
         else {runSim = 'off'};
       }
 
-      function dropBody() {
-        angle = Math.round(thetaCurrentDeg);
-        if (Math.round(angle*10)/10 !== thetaInitialDeg) {
-          angle += 1;
-          updateCoords(angle);
-          console.log(angle);
-        }
-      }
       
         drawProjectile(thetaInitial);
 
