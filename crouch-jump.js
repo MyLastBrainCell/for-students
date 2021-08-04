@@ -96,9 +96,9 @@
       function raiseBody() {
         angle = Math.round(thetaCurrentDeg);
         iterProtect += 1;
-        dTheta *= 1.01;
             
         if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
+          dTheta *= 1.01;
           angle -= dTheta;
           updateCoords(angle);
         }
@@ -108,11 +108,12 @@
           else if (footY >= footYInitial && runSim === 'down') {console.log('please die'); runSim = 'resetting'; updateCoords(0)}
         }
         else if (runSim === 'resetting' && (angle - thetaInitialDeg) <= 0) {
+          dTheta /= 1.01;
           console.log(dTheta);
           angle += dTheta;
           updateCoords(angle);
         }
-        else {runSim = 'off'};
+        else {thetaCurrentDeg = thetaInitialDeg; angle = thetaInitialDeg; runSim = 'off'; footX = 329; footY = 427; dTheta = 1;};
       }
 
       
@@ -121,11 +122,15 @@
     function registerClick() {
       iterProtect = 0;
       runSim = 'up';
-      console.log('registerClick() with ' + String(document.getElementById('thetaSlider').value))
+      console.log('registerClick() with thetaSlider = ' + String(document.getElementById('thetaSlider').value))
+      console.log('Also with thetaCurrentDeg = ' + String(Math.round(thetaCurrentDeg * 10)/10))
+      console.log('Also with thetaInitialDeg = ' + String(Math.round(thetaInitialDeg * 10)/10))
       const id = setInterval(function() {
-        if ( (Math.round(thetaCurrentDeg) !== thetaInitialDeg || runSim !== 'off') && iterProtect < 300) {raiseBody();}
+        thetaInitialDeg = document.getElementById('thetaSlider').value;
+        thetaInitial = (Math.PI/180)*thetaInitialDeg;
+        if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 300) {raiseBody();}
         else {
           clearInterval(id);
           }
-      }, 20); 
+      }, 10); 
     }
