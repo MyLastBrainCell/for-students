@@ -98,7 +98,7 @@
       function raiseBody() {
         angle = Math.round(thetaCurrentDeg);
         iterProtect += 1;
-        dTheta *= 1.1;    
+        dTheta *= 1.01;    
             
         if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
           angle -= dTheta;
