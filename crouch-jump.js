@@ -1,8 +1,5 @@
       var theCanvas = document.getElementById("theCanvas");   // for drawing the projectile
       var theContext = theCanvas.getContext("2d");
-      //var velCanvas = document.getElementById("velCanvas");   // for drawing the projectile
-      //var velContext = velCanvas.getContext("2d");
-      var x, y, vx, vy;                           // position and velocity
       var timer;                                  // for animation timing
       let thetaInitialDeg = document.getElementById('thetaSlider').value;
       let thetaInitial = (Math.PI/180)*thetaInitialDeg;
@@ -18,6 +15,12 @@
       let footY = 427;
 
       let dTheta = 1;
+      let vel = 0;
+      let dt = 10/1000;
+
+      let accelPush = -16 / dt;
+      let accelGrav = 9.8 / dt;
+      let accel = accelPush + accelGrav;
 
       function drawProjectile(theta) {
           theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
@@ -88,7 +91,7 @@
       function updateCoords(angle) {
         thetaCurrentDeg = angle;
         thetaCurrent = (Math.PI/180)*angle;
-        console.log('current is ' + String(thetaCurrentDeg));
+        //console.log('current is ' + String(thetaCurrentDeg));
         angle = (Math.PI/180)*angle;
         drawProjectile(angle);
       }
@@ -96,20 +99,36 @@
       function raiseBody() {
         angle = Math.round(thetaCurrentDeg);
         iterProtect += 1;
+        
+        if (Math.round(footY*10)/10 !== Math.round(footYInitial*10)/10) {accel = 0};
             
         if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
           dTheta *= 1.01;
           angle -= dTheta;
+
+          vel += accel*dt;
           updateCoords(angle);
+
+          console.log('acceleration: ' + String(accel));
+          console.log('velocity: ' + String(vel));
+          console.log('dist travelled: ' + String(vel*dt));
+          console.log('\n\n');
         }
         else if (Math.round((angle-dTheta)*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
-          if (footY >= 330 && runSim === 'up') {footY -= 2; updateCoords(0)}
-          else if (footY <= 330 || (footY < footYInitial && runSim === 'down')) {runSim = 'down'; footY += 2; updateCoords(0)}
-          else if (footY >= footYInitial && runSim === 'down') {console.log('please die'); runSim = 'resetting'; updateCoords(0)}
+          accel = accelGrav;
+          vel += accel*dt;
+          /*
+          if (footY >= 330 && runSim === 'up') {footY -= vel*dt; updateCoords(0)}
+          else if (footY <= 330 || (footY < footYInitial && runSim === 'down')) {runSim = 'down'; footY += vel*dt; updateCoords(0)}
+          else if (footY >= footYInitial && runSim === 'down') {accel = -10; runSim = 'resetting'; updateCoords(0)}
+          */
+          if (Math.round(vel*10)/10 > 0 && runSim === 'up') {console.log('A'); footY -= vel*dt; updateCoords(0)}
+          else if (Math.round(vel*10)/10 < 0 || (footY < footYInitial && runSim === 'down')) {console.log('B'); runSim = 'down'; footY += vel*dt /*previously += 2*/; updateCoords(0)}
+          else if (Math.round(footYInitial*10)/10 === footYInitial && runSim === 'down') {console.log('B'); accel = -10; runSim = 'resetting'; updateCoords(0)}
+
         }
         else if (runSim === 'resetting' && (angle - thetaInitialDeg) <= 0) {
           dTheta /= 1.01;
-          console.log(dTheta);
           angle += dTheta;
           updateCoords(angle);
         }
@@ -122,15 +141,14 @@
     function registerClick() {
       iterProtect = 0;
       runSim = 'up';
-      console.log('registerClick() with thetaSlider = ' + String(document.getElementById('thetaSlider').value))
-      console.log('Also with thetaCurrentDeg = ' + String(Math.round(thetaCurrentDeg * 10)/10))
-      console.log('Also with thetaInitialDeg = ' + String(Math.round(thetaInitialDeg * 10)/10))
+      accel = accelPush + accelGrav;
+      vel = 0;
       const id = setInterval(function() {
         thetaInitialDeg = document.getElementById('thetaSlider').value;
         thetaInitial = (Math.PI/180)*thetaInitialDeg;
-        if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 300) {raiseBody();}
+        if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 2000) {raiseBody();}
         else {
           clearInterval(id);
           }
-      }, 10); 
+      }, dt*1000); 
     }
