@@ -14,11 +14,12 @@
       let footX = 329;
       let footY = 427;
 
-      let dTheta = 1;
+      let dTheta = 2;
       let vel = 0;
       let dt = 10/1000;
+      let clickable = true;
 
-      let accelPush = -16 / dt;
+      let accelPush = -22 / dt;
       let accelGrav = 9.8 / dt;
       let accel = accelPush + accelGrav;
 
@@ -28,13 +29,13 @@
           var legR = 35;
           var headR = 50;
         
-          var kneeX = footX;
-          var kneeY = footY - legR;
+          var kneeX = footX + legR*Math.sin(theta/2);
+          var kneeY = footY - legR*Math.cos(theta/2);
         
           var buttX = kneeX - legR*Math.cos(Math.PI/2 - theta);
           var buttY = kneeY - legR*Math.sin(Math.PI/2 - theta);
         
-          var headX = footX;
+          var headX = (buttX + kneeX)/2;
           var headY = buttY - Math.sqrt(headR**2 - (headX - buttX)**2);
 
           theContext.beginPath();
@@ -103,12 +104,15 @@
         if (Math.round(footY*10)/10 !== Math.round(footYInitial*10)/10) {accel = 0};
             
         if (Math.round(angle*10)/10 !== 0 && runSim === 'up') {
-          dTheta *= 1.01;
+          dTheta *= 1.05;
           angle -= dTheta;
+
+          if (angle < 0) {angle = 0};
 
           vel += accel*dt;
           updateCoords(angle);
 
+          console.log('angle ' + String(angle));
           console.log('acceleration: ' + String(accel));
           console.log('velocity: ' + String(vel));
           console.log('dist travelled: ' + String(vel*dt));
@@ -117,18 +121,14 @@
         else if (Math.round((angle-dTheta)*10)/10 <= 0 && runSim !== 'resetting' && runSim !== 'off') {
           accel = accelGrav;
           vel += accel*dt;
-          /*
-          if (footY >= 330 && runSim === 'up') {footY -= vel*dt; updateCoords(0)}
-          else if (footY <= 330 || (footY < footYInitial && runSim === 'down')) {runSim = 'down'; footY += vel*dt; updateCoords(0)}
-          else if (footY >= footYInitial && runSim === 'down') {accel = -10; runSim = 'resetting'; updateCoords(0)}
-          */
-          if (Math.round(vel*10)/10 > 0 && runSim === 'up') {console.log('A'); footY -= vel*dt; updateCoords(0)}
+
+          if (Math.round(vel*10)/10 > 0 && runSim === 'up') {footY -= vel*dt; updateCoords(0)}
           else if (Math.round(vel*10)/10 < 0 || (footY < footYInitial && runSim === 'down')) {console.log('B'); runSim = 'down'; footY += vel*dt /*previously += 2*/; updateCoords(0)}
           else if (Math.round(footYInitial*10)/10 === footYInitial && runSim === 'down') {console.log('B'); accel = -10; runSim = 'resetting'; updateCoords(0)}
 
         }
         else if (runSim === 'resetting' && (angle - thetaInitialDeg) <= 0) {
-          dTheta /= 1.01;
+          dTheta /= 1.05;
           angle += dTheta;
           updateCoords(angle);
         }
@@ -139,16 +139,37 @@
         drawProjectile(thetaInitial);
 
     function registerClick() {
-      iterProtect = 0;
-      runSim = 'up';
-      accel = accelPush + accelGrav;
-      vel = 0;
-      const id = setInterval(function() {
+
+      if (clickable) {
+        clickable = false;
+        runSim = 'off';
+        iterProtect = 0;
+
+        footX = 329; 
+        footY = 427;
+
+        dTheta = 1;
+
+        iterProtect = 0;
+        runSim = 'up';
+        accel = accelPush + accelGrav;
+        vel = 0;
+
         thetaInitialDeg = document.getElementById('thetaSlider').value;
         thetaInitial = (Math.PI/180)*thetaInitialDeg;
-        if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 500) {raiseBody();}
-        else {
-          clearInterval(id);
-          }
-      }, dt*1000); 
+        thetaCurrentDeg = document.getElementById('thetaSlider').value;
+        thetaCurrent = (Math.PI/180)*thetaCurrentDeg;
+
+
+        const id = setInterval(function() {
+          thetaInitialDeg = document.getElementById('thetaSlider').value;
+          thetaInitial = (Math.PI/180)*thetaInitialDeg;
+          if ( (Math.round(thetaCurrentDeg * 10)/10 !== Math.round(thetaInitialDeg * 10)/10 || runSim !== 'off') && iterProtect < 300) {raiseBody();}
+          
+          else {
+            clearInterval(id);
+            clickable = true;
+            }
+        }, dt*1000); 
+      }
     }
