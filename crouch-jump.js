@@ -27,7 +27,7 @@
           theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
           //velContext.clearRect(0, 0, velCanvas.width, velCanvas.height);
           var legR = 35;
-          var headR = 50;
+          var headR = 60;
         
           var kneeX = footX + legR*Math.sin(theta/2);
           var kneeY = footY - legR*Math.cos(theta/2);
