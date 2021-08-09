@@ -17,7 +17,7 @@ function ToSciNotation(num) {
   let DecimalPlace = undefined;
 
   num = Number(num.replace(' ',''));
-  num = ('\\( ' + String(num.toExponential()).replace('e',' x 10^{') + '} \\)' ).replace('+','');
+  num = ('\\( ' + String(num.toExponential()).replace('e',' \\times 10^{') + '} \\)' ).replace('+','');
   
   return num;
 }
