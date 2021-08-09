@@ -6,8 +6,6 @@ function clearBox() {
 function getInputValue() {
   // Selecting the input element and get its value
   let inputVal = document.getElementById('myInput').value;
-  codeOut = '';
-  UncPropSteps(inputVal);
   document.getElementById('MathOutput').innerHTML = ToSciNotation(inputVal);
   MathJax.typeset()
 }
