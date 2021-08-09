@@ -8,7 +8,7 @@ function getInputValue() {
   let inputVal = document.getElementById('myInput').value;
   codeOut = '';
   UncPropSteps(inputVal);
-  document.getElementById('MathOutput').innerHTML = codeOut;
+  document.getElementById('MathOutput').innerHTML = ToSciNotation(inputVal);
   MathJax.typeset()
 }
 
@@ -21,6 +21,5 @@ function ToSciNotation(num) {
   num = Number(num.replace(' ',''));
   num = ('\\( ' + String(num.toExponential()).replace('e',' x 10^(') + ') \\)' ).replace('+','');
   
-  document.getElementById('MathOutput').innerHTML = num;
   return num;
 }
