@@ -1,0 +1,153 @@
+<script>
+
+function wavelengthToRGB(projectionWavelength) {
+    //Based on code by Dan Bruton http://www.physics.sfasu.edu/astro/color/spectra.html
+
+    projectionWavelength *= 10**(9);
+
+    const gamma = 0.8;
+    let attenuation = 0;
+    let R = 0.0;
+    let G = 0.0;
+    let B = 0.0;
+
+    if (projectionWavelength >= 380 && projectionWavelength <= 440) {
+      attenuation = 0.3 + 0.7 * (projectionWavelength - 380) / (440 - 380);
+      R = ((-(projectionWavelength - 440) / (440 - 380)) * attenuation) ** gamma;
+      G = 0.0;
+      B = (1.0 * attenuation) ** gamma;
+    }
+    else if (projectionWavelength >= 440 && projectionWavelength <= 490) {
+      R = 0.0;
+      G = ((projectionWavelength - 440) / (490 - 440)) ** gamma;
+      B = 1.0;
+    }
+    else if (projectionWavelength >= 490 && projectionWavelength <= 510) {
+      R = 0.0;
+      G = 1.0;
+      B = (-(projectionWavelength - 510) / (510 - 490)) ** gamma;
+    }
+    else if (projectionWavelength >= 510 && projectionWavelength <= 580) {
+      R = ((projectionWavelength - 510) / (580 - 510)) ** gamma;
+      G = 1.0;
+      B = 0.0;
+    }
+    else if (projectionWavelength >= 580 && projectionWavelength <= 645) {
+      R = 1.0;
+      G = (-(projectionWavelength - 645) / (645 - 580)) ** gamma;
+      B = 0.0;
+    }
+    else if (projectionWavelength >= 645 && projectionWavelength <= 760) {
+      attenuation = 0.3 + 0.7 * (750 - projectionWavelength) / (750 - 645);
+      R = (1.0 * attenuation) ** gamma;
+      G = 0.0;
+      B = 0.0;
+    }
+    else {let R = 0.0; let G = 0.0; let B = 0.0;}
+
+      
+    return [Math.round(255*R), Math.round(255*G), Math.round(255*B)]
+  }
+
+
+
+
+
+  function processDopplerDataInput(vel) {
+
+    vel *= 1000;
+
+    let shiftedWavelength = dopplerShift(vel);
+      
+    let y_m = [];
+    let colour = [];
+
+  // Assume it's a list     
+    for (let i = 0 ; i < shiftedWavelength.length ; i++) {
+
+      y_m.push(250 + 25*i);
+      colour.push(wavelengthToRGB(shiftedWavelength[i]));
+     
+    }
+
+    let colourStr = [];
+
+    for (let i = 0 ; i < y_m.length ; i++) {
+      colourStr.push('rgba(' + String(colour[i]) + ',0.5)');
+    };
+
+    plotIncoherentPattern(y_m,colourStr,vel);
+
+  };
+
+
+
+  function plotIncoherentPattern(y_m,colours) {
+
+    var projectionData = [];
+
+    for (let i = 0 ; i < y_m.length ; i++) {
+      
+      let tempTrace = {
+        x: [y_m[i] , y_m[i]],
+        y: [-1 , 1],
+        mode: 'lines',
+        showlegend: false,
+        line: {
+          color: colours[i],
+          width: 10,
+        },
+      }
+      projectionData.push(tempTrace);
+    }
+
+    var projectionLayout = {
+      plot_bgcolor:"black",
+      paper_bgcolor:"#FFF3",
+      xaxis: {
+        showgrid: true,
+        zeroline: true,
+        showline: true,
+        title: {text: "Rest wavelength (nm)"},
+        mirror: 'ticks',
+        gridcolor: '#bdbdbd',
+        gridwidth: 2,
+        zerolinecolor: '#969696',
+        zerolinewidth: 2,
+        linecolor: '#636363',
+        linewidth: 3,
+        range: [250,800],
+      },
+      yaxis: {
+        showgrid: true,
+        zeroline: true,
+        showline: true,
+        mirror: 'ticks',
+        gridcolor: '#bdbdbd',
+        gridwidth: 2,
+        zerolinecolor: '#969696',
+        zerolinewidth: 2,
+        linecolor: '#636363',
+        linewidth: 3,
+      }
+    };
+
+    Plotly.newPlot('whiteLightDiv',projectionData,projectionLayout);
+  }
+
+  function dopplerShift(vel) {
+    
+    let shiftWaves = [];
+    let c = 3*10**(8);
+
+    for  (let i=250;i<=800;i+=25) {
+        shiftWaves.push( (i * 10**(-9)) * Math.sqrt( (1 + vel/c) / (1 - vel/c) ) );      
+    }
+
+    return shiftWaves
+  }
+
+
+
+
+  </script>
